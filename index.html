@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOD PANEL</title>
+<title>FIRE PANEL</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 :root {
@@ -73,13 +73,14 @@ button { -webkit-tap-highlight-color: transparent; }
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  background: linear-gradient(135deg, var(--blue), var(--violet));
-  box-shadow: 0 12px 26px rgba(56, 189, 248, 0.18);
+  background: linear-gradient(135deg, var(--red), var(--amber));
+  box-shadow: 0 12px 26px rgba(251, 113, 133, 0.18);
   font-weight: 800;
   font-size: 13px;
 }
 .header-title { font-size: 18px; line-height: 1.05; font-weight: 850; letter-spacing: 0; }
-.header-sub { margin-top: 5px; font-size: 12px; color: var(--muted); }
+.header-owner { font-size: 11px; color: var(--red); font-weight: 850; letter-spacing: 0.5px; margin-top: 3px; text-shadow: 0 0 8px rgba(251, 113, 133, 0.4); }
+.header-sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
 .dot-on { background: var(--green); box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.1); }
 .dot-off { background: var(--red); box-shadow: 0 0 0 5px rgba(251, 113, 133, 0.1); }
@@ -306,6 +307,7 @@ button { -webkit-tap-highlight-color: transparent; }
 }
 .eyebrow { color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
 .big-time { margin-top: 13px; font-size: clamp(26px, 8vw, 42px); line-height: 1; font-weight: 900; }
+.big-time.unlimited { color: var(--green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4); letter-spacing: 1px; }
 
 .modal {
   position: fixed;
@@ -501,12 +503,32 @@ button { -webkit-tap-highlight-color: transparent; }
 .copy-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
 
-.fav-btn{
- display:inline-flex;align-items:center;justify-content:center;
- width:28px;height:28px;margin-left:6px;
- border:1px solid rgba(251,191,36,.25);
- border-radius:8px;background:rgba(251,191,36,.08);
- cursor:pointer;font-size:14px;
+/* Modern Fav Button */
+.fav-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin-left: 6px;
+  border: 1px solid rgba(255,255,255, 0.12); border-radius: 9px;
+  background: rgba(255,255,255, 0.05); color: var(--muted);
+  cursor: pointer; transition: all 0.15s ease; outline: none;
+}
+.fav-btn:hover {
+  color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);
+}
+.fav-btn:active { transform: scale(0.96); }
+.fav-btn svg { 
+  width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; 
+  stroke-linecap: round; stroke-linejoin: round; transition: all 0.15s ease; 
+}
+/* Starred State */
+.fav-btn.starred {
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.12);
+  color: var(--amber); /* Yellow/Amber color */
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.2);
+}
+.fav-btn.starred svg {
+  fill: var(--amber);
+  stroke: var(--amber);
 }
 
 </style>
@@ -515,9 +537,10 @@ button { -webkit-tap-highlight-color: transparent; }
 
 <div class="header">
   <div class="header-left">
-    <div class="avatar">DM</div>
+    <div class="avatar">FP</div>
     <div>
-      <div class="header-title">GOD PANEL</div>
+      <div class="header-title">FIRE PANEL</div>
+      <div class="header-owner">Owner - @NonsenseBy</div>
       <div class="header-sub" id="conn-status"><span class="dot dot-on"></span>Connecting...</div>
     </div>
   </div>
@@ -528,7 +551,7 @@ button { -webkit-tap-highlight-color: transparent; }
 <div id="homeDashboard" style="display:block">
 <div class="dashboard-card">
 <div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><div class="eyebrow">Premium Expiry</div><div class="pill">Active</div></div>
-<div class="big-time">03h 39m 59s</div>
+<div class="big-time unlimited">UNLIMITED</div>
 </div>
 
 <div class="eyebrow" style="margin-bottom:12px">Control Terminals</div>
@@ -539,7 +562,7 @@ button { -webkit-tap-highlight-color: transparent; }
 </div>
 
 <div class="quick-grid">
-<div class="quick-card"><div class="eyebrow">Starred</div><h2 id="dashTargets" style="margin-top:8px">0 Targets</h2></div>
+<div class="quick-card" onclick="openStarredFilter()" style="cursor:pointer"><div class="eyebrow">Starred</div><h2 id="dashTargets" style="margin-top:8px">0 Targets</h2></div>
 <div class="quick-card" onclick="openLiveSms()" style="cursor:pointer"><div class="eyebrow">Live SMS</div><h2 id="dashSms" style="margin-top:8px">SMS Feed</h2></div>
 </div>
 </div>
@@ -572,6 +595,7 @@ button { -webkit-tap-highlight-color: transparent; }
 
 <div class="filter-tabs" style="display:none" id="filter-tabs">
   <button class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All</button>
+  <button class="filter-tab" data-filter="starred" onclick="setFilter('starred',this)">Starred ⭐</button>
   <button class="filter-tab" data-filter="online" onclick="setFilter('online',this)">Online</button>
   <button class="filter-tab" data-filter="offline" onclick="setFilter('offline',this)">Offline</button>
   <button class="filter-tab" data-filter="sent" onclick="setFilter('sent',this)">Sent Done</button>
@@ -732,14 +756,23 @@ function getDeviceSubInfo(device) {
 
 
 
-function toggleFav(id){
+function toggleFav(id, btn) {
  try{
    const k='god_favs';
    const favs=JSON.parse(localStorage.getItem(k)||'[]');
    const i=favs.indexOf(id);
-   if(i>=0){favs.splice(i,1);showToast('Removed from favorites','info');}
-   else {favs.push(id);showToast('Added to favorites','ok');}
+   if(i>=0){
+     favs.splice(i,1);
+     showToast('Removed from favorites','info');
+     if(btn) btn.classList.remove('starred');
+   } else {
+     favs.push(id);
+     showToast('Added to favorites','ok');
+     if(btn) btn.classList.add('starred');
+   }
    localStorage.setItem(k,JSON.stringify(favs));
+   updateSummary(allDevices);
+   if(currentFilter === 'starred') renderList();
  }catch(e){}
 }
 
@@ -757,10 +790,16 @@ function renderDeviceSummary(device, messages) {
   const latest = (messages || [])[0] || latestSmsByDevice[d.id];
   const latestText = latest ? formatMsgDate(latest) : 'No SMS';
   const network = d.network && d.network !== 'Unknown' ? d.network : 'Unknown';
+  
+  const devicePhone = getDeviceTitle(d);
+  const devKey = d.id || devicePhone;
+  const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
+  const isFav = favs.includes(devKey);
+
   return `<div class="device-summary">
     <div class="device-summary-top">
       <div>
-        <div class="device-summary-title">${getDeviceTitle(d)} <button class="copy-btn" onclick="copyText(\`${getDeviceTitle(d)}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn" onclick="event.stopPropagation();toggleFav('${d.id||phone}')">⭐</button></div>
+        <div class="device-summary-title">${devicePhone} <button class="copy-btn" onclick="copyText(\`${devicePhone}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
         <div class="device-summary-id">${d.id || 'Unknown device id'}</div>
       </div>
       <span class="badge ${badgeClass(norm)}">${badgeLabel(norm, d.status || 'Unknown')}</span>
@@ -937,9 +976,13 @@ function renderList() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   let devices = sortDevicesByLatestSms([...allDevices]);
 
-  if (currentFilter !== 'all') {
+  if (currentFilter === 'starred') {
+    const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
+    devices = devices.filter(d => favs.includes(d.id) || favs.includes(getDeviceTitle(d)));
+  } else if (currentFilter !== 'all') {
     devices = devices.filter(d => normalizeStatus(d.status) === currentFilter);
   }
+  
   if (smsAgeFilter !== 'all') {
     devices = devices.filter(d => matchesSmsAgeFilter(d));
   }
@@ -974,9 +1017,14 @@ function renderList() {
     const net = !recentForCard.length ? getDeviceSubInfo(d) : '';
     const latestSmsTime = latestSmsMap[d.id];
     const ago = latestSmsTime ? 'SMS ' + timeAgo(latestSmsTimeMap[d.id] || d.last_active) : timeAgo(d.last_active);
+    
+    const devKey = d.id || phone;
+    const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
+    const isFav = favs.includes(devKey);
+    
     return `<div class="device-row" onclick="openSms(\'${d.id}\')" style="cursor:pointer">
       <div class="dev-left">
-        <div class="dev-phone">${phone} <button class="copy-btn" onclick="copyText(\`${phone}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+        <div class="dev-phone">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText(\`${phone}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
         <div class="dev-id" onclick="openSms(\'${d.id}\')" style="cursor:pointer;color:#2AABEE">${d.id}</div>
         ${recentHtml}
         ${net ? `<div class="dev-net">${net}</div>` : ''}
@@ -1007,6 +1055,12 @@ function updateSummary(devices) {
   document.getElementById('s-online').textContent = online;
   document.getElementById('s-sent').textContent = sent;
   document.getElementById('s-failed').textContent = failed;
+  
+  try {
+    const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
+    const targetEl = document.getElementById('dashTargets');
+    if (targetEl) targetEl.textContent = favs.length + ' Targets';
+  } catch(e){}
 }
 
 async function loadData(showLoader = true, showToastSuccess = false) {
@@ -1206,6 +1260,11 @@ function renderLiveCard(s){
   const statusLabel = status === 'online' ? 'Online' : status === 'offline' ? 'Offline' : (device.status || 'Unknown');
   const statusClass = status === 'online' ? 'badge-online' : status === 'offline' ? 'badge-offline' : 'badge-other';
   const phone = getDeviceTitle(device);
+  
+  const devKey = device.id || phone;
+  const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
+  const isFav = favs.includes(devKey);
+
   return `<div id="sms_${s.id}" class="sms-card" onclick="openedFromLiveFeed=true;closeLiveSms();openSms('${s.device_id||s.source_id||''}')" style="cursor:pointer">
     <div class="sms-card-header" style="flex-wrap:wrap;align-items:center;">
       <div style="min-width:0;">
@@ -1216,7 +1275,7 @@ function renderLiveCard(s){
         <span class="status-pill ${statusClass}">${statusLabel}</span>
       </div>
     </div>
-    <div class="sms-card-device">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText('${phone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+    <div class="sms-card-device">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText('${phone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
     <div style="font-size:11px;color:var(--muted)">${s.device_id||''}</div>
     <div class="sms-card-body">${s.body||''}</div>
     ${s.otp_code ? `<div class="otp-chip">OTP: ${s.otp_code}</div>` : ''}
@@ -1264,6 +1323,12 @@ function showTargetConsole(){
   document.querySelector('.section').style.display='block';
 }
 
+function openStarredFilter() {
+  showTargetConsole();
+  const starTab = document.querySelector('.filter-tab[data-filter="starred"]');
+  if (starTab) setFilter('starred', starTab);
+}
+
 function backToHome(){
   const hd=document.getElementById('homeDashboard');
   if(hd) hd.style.display='block';
@@ -1271,6 +1336,7 @@ function backToHome(){
   document.querySelector('.search-wrap').style.display='none';
   document.querySelector('.filter-tabs').style.display='none';
   document.querySelector('.section').style.display='none';
+  updateSummary(allDevices);
 }
 setInterval(()=>pollLiveFeed(),1000);
 
