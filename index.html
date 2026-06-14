@@ -545,11 +545,15 @@ window.isLoggedInThisSession = false;
 if (window.Telegram && window.Telegram.WebApp) { Telegram.WebApp.ready(); Telegram.WebApp.expand(); }
 
 /* --- PREMIUM & ADMIN KEY LOGIC (SESSION SECURE) --- */
+let isPremiumKeyAutoFilled = false; // Naya flag jo ensure karega autofill sirf ek baar ho
+
 window.checkPremium = function() {
     if (!window.isLoggedInThisSession) {
         const savedKey = localStorage.getItem('fire_premium_key');
-        if (savedKey) {
+        // Sirf ek baar autofill hoga, refresh hone par. Agar cut karoge to wapas overwrite nahi karega.
+        if (savedKey && !isPremiumKeyAutoFilled) {
             document.getElementById('premiumKeyInput').value = savedKey;
+            isPremiumKeyAutoFilled = true;
         }
         document.getElementById('premiumOverlay').style.display = 'flex';
         return false;
